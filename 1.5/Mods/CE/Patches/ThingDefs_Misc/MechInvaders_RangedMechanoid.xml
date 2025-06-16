@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<!-- Bombardier Weapon Changes -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="IM_Gun_TripleNeedler"]</xpath>
+		<value>
+			<ThingDef ParentName="BaseWeaponTurret">
+				<defName>IM_Gun_TripleNeedler</defName>
+				<label>triple needler turret</label>
+				<description>An upscaled version of the needle gun sporting three barrels. It fires in three-shot bursts of high velocity, needle-like projectiles over great distances. Compared to its lighter counterparts, it's significantly heavier and less accurate, able to be mounted only on ultra-heavy mechanoids.</description>
+				<tradeability>None</tradeability>
+				<destroyOnDrop>true</destroyOnDrop>
+				<techLevel>Spacer</techLevel>
+				<relicChance>0</relicChance>
+				<graphicData>
+					<texPath>Things/Item/Equipment/WeaponRanged/TripleNeedler</texPath>
+					<drawSize>1.5</drawSize>
+					<graphicClass>Graphic_Single</graphicClass>
+				</graphicData>
+				<statBases>
+					<Mass>12</Mass>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>0.2</ShotSpread><!-- Manually adjusted from 0.08 due to accuracy concerns. -->
+					<SwayFactor>0.56</SwayFactor>
+					<Bulk>20.00</Bulk>
+				</statBases>
+				<verbs>
+					<li Class="CombatExtended.VerbPropertiesCE">
+						<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+						<hasStandardCommand>true</hasStandardCommand>
+						<defaultProjectile>Bullet_5x50mmCaseless_Sabot_TN</defaultProjectile>
+						<range>65</range>
+						<burstShotCount>1</burstShotCount>
+						<soundCast>Shot_NeedleGun</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>9</muzzleFlashScale>
+						<defaultCooldownTime>4.5</defaultCooldownTime>
+						<linkedBodyPartsGroup>IM_TurretHardpoint</linkedBodyPartsGroup>
+						<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+						<ticksBetweenBurstShots>150</ticksBetweenBurstShots>
+					</li>
+				</verbs>
+			</ThingDef>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="IM_Gun_ChargeHowitzer"]</xpath>
+		<value>
+			<ThingDef ParentName="BaseGun">
+				<defName>IM_Gun_ChargeHowitzer</defName>
+				<label>charge howitzer</label>
+				<graphicData>
+					<texPath>Things/Item/Equipment/WeaponRanged/ChargeHowitzer</texPath>
+					<graphicClass>Graphic_Single</graphicClass>
+					<drawSize>1.5</drawSize>
+				</graphicData>
+				<equippedAngleOffset>-55</equippedAngleOffset>
+				<tradeability>None</tradeability>
+				<destroyOnDrop>true</destroyOnDrop>
+				<relicChance>0</relicChance>
+				<description>A relatively short-range rail-assisted artillery gun designed as part of a mechanoid-mounted turret. Due to limited ordnance space, the fired warhead is smaller and less damaging compared to those of a stationary mortar.</description>
+				<statBases>
+					<MarketValue>1400</MarketValue>
+					<Mass>24</Mass>
+					<Bulk>30.00</Bulk>
+					<RangedWeapon_Cooldown>2.59</RangedWeapon_Cooldown>
+					<SightsEfficiency>1</SightsEfficiency>
+					<ShotSpread>1</ShotSpread>
+					<SwayFactor>2</SwayFactor>
+				</statBases>
+				<weaponTags>
+					<li>NoSwitch</li>
+					<li>IM_Gun_ChargeHowitzer</li>
+				</weaponTags>
+				<verbs>
+					<li Class="CombatExtended.VerbPropertiesCE">
+						<verbClass>CombatExtended.Verb_ShootMortarCE</verbClass>
+						<forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+						<hasStandardCommand>true</hasStandardCommand>
+						<requireLineOfSight>false</requireLineOfSight>
+						<defaultProjectile>IM_Bullet_ChargeShell_CE</defaultProjectile>
+						<warmupTime>6</warmupTime>
+						<minRange>30</minRange>
+						<range>500</range>
+						<burstShotCount>1</burstShotCount>
+						<soundCast>IM_ChargeHoitzerShot</soundCast>
+						<soundCastTail>GunTail_Heavy</soundCastTail>
+						<muzzleFlashScale>14</muzzleFlashScale>
+						<indirectFirePenalty>0.3</indirectFirePenalty>
+						<targetParams>
+							<canTargetLocations>true</canTargetLocations>
+						</targetParams>
+					</li>
+				</verbs>
+				<tools>
+					<li Class="CombatExtended.ToolCE">
+						<label>barrel</label>
+						<capacities>
+							<li>Blunt</li>
+						</capacities>
+						<power>20</power>
+						<cooldownTime>5</cooldownTime>
+						<armorPenetrationBlunt>5</armorPenetrationBlunt>
+					</li>
+				</tools>
+				<comps>
+					<li Class="CombatExtended.CompProperties_Charges">
+						<chargeSpeeds>
+							<li>30</li>
+							<li>50</li>
+							<li>70</li>
+							<li>90</li>
+						</chargeSpeeds>
+					</li>
+					<li Class="CombatExtended.CompProperties_AmmoUser">
+						<magazineSize>1</magazineSize>
+						<AmmoGenPerMagOverride>3</AmmoGenPerMagOverride>
+						<reloadTime>2</reloadTime>
+						<ammoSet>AmmoSet_80x256mmFuel_CH</ammoSet>
+					</li>
+				</comps>
+			</ThingDef>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="IM_Mech_Bombardier"]/comps/li[@Class="CompProperties_TurretGun"]/turretDef</xpath>
+		<value>
+			<turretDef>IM_Gun_TripleNeedler</turretDef>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/PawnKindDef[defName="IM_Mech_Bombardier"]/weaponTags</xpath>
+		<value>
+			<weaponTags>
+				<li>IM_Gun_ChargeHowitzer</li>
+			</weaponTags>
+		</value>
+	</Operation>
+
+	<!-- Melee Attacks -->
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[
+			defName="IM_Gun_ChargeRepeater" or
+			defName="IM_Gun_MiniBlaster" or
+			defName="IM_Gun_StingerRifle"
+			]/tools </xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>11.7</power>
+					<cooldownTime>2.6</cooldownTime>
+					<armorPenetrationBlunt>2.4</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="IM_Gun_ChargeCleaver"]/tools </xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>11.7</power>
+					<cooldownTime>2.6</cooldownTime>
+					<armorPenetrationBlunt>2.4</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>Cut</li>
+					</capacities>
+					<power>25</power>
+					<cooldownTime>1.72</cooldownTime>
+					<chanceFactor>1</chanceFactor>
+					<armorPenetrationBlunt>2.59</armorPenetrationBlunt>
+					<armorPenetrationSharp>18</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>Defs/ThingDef[defName="IM_Gun_StingerGun"]/tools </xpath>
+		<value>
+			<tools>
+				<li Class="CombatExtended.ToolCE">
+					<label>barrel</label>
+					<capacities>
+						<li>Blunt</li>
+					</capacities>
+					<power>11.7</power>
+					<cooldownTime>2.6</cooldownTime>
+					<armorPenetrationBlunt>2.4</armorPenetrationBlunt>
+					<linkedBodyPartsGroup>Barrel</linkedBodyPartsGroup>
+				</li>
+				<li Class="CombatExtended.ToolCE">
+					<label>edge</label>
+					<capacities>
+						<li>IM_PoisonBlade</li>
+					</capacities>
+					<power>10</power>
+					<cooldownTime>1.72</cooldownTime>
+					<chanceFactor>1</chanceFactor>
+					<armorPenetrationBlunt>2.59</armorPenetrationBlunt>
+					<armorPenetrationSharp>8</armorPenetrationSharp>
+					<linkedBodyPartsGroup>Edge</linkedBodyPartsGroup>
+				</li>
+			</tools>
+		</value>
+	</Operation>
+
+	<!-- ========== Mini-Blaster ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>IM_Gun_MiniBlaster</defName>
+		<statBases>
+			<Mass>2.80</Mass>
+			<Bulk>5.00</Bulk>
+			<SwayFactor>0.75</SwayFactor>
+			<ShotSpread>0.16</ShotSpread>
+			<SightsEfficiency>1</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.280</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_5x16mmCharged</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>26</range>
+			<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+			<burstShotCount>6</burstShotCount>
+			<soundCast>IM_MiniBlasterShot</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>18</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_5x16mmCharged</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>Snapshot</aiAimMode>
+			<aiUseBurstMode>True</aiUseBurstMode>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_Rifle</li>
+			<li>NoSwitch</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- ========== Stinger Gun ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>IM_Gun_StingerGun</defName>
+		<statBases>
+			<Mass>1.5</Mass>
+			<Bulk>4.00</Bulk>
+			<SwayFactor>0.75</SwayFactor>
+			<ShotSpread>0.16</ShotSpread>
+			<SightsEfficiency>2</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.5</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.280</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_5x50mmCaseless_Sabot_LVT</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>22</range>
+			<soundCast>IM_StingerShot</soundCast>
+			<soundCastTail>GunTail_Light</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>8</magazineSize>
+			<reloadTime>3</reloadTime>
+			<ammoSet>AmmoSet_5x50mmCaseless_LVT</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>Snapshot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_Rifle</li>
+			<li>NoSwitch</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- ========== Stinger Gun ========== -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>IM_Gun_StingerRifle</defName>
+		<statBases>
+			<Mass>4</Mass>
+			<Bulk>6.00</Bulk>
+			<SwayFactor>0.75</SwayFactor>
+			<ShotSpread>0.16</ShotSpread>
+			<SightsEfficiency>1</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.280</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_5x50mmCaseless_SabotT</defaultProjectile>
+			<warmupTime>0.6</warmupTime>
+			<range>55</range>
+			<ticksBetweenBurstShots>8</ticksBetweenBurstShots>
+			<burstShotCount>3</burstShotCount>
+			<soundCast>IM_StingerShot</soundCast>
+			<soundCastTail>GunTail_Medium</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>15</magazineSize>
+			<reloadTime>4</reloadTime>
+			<ammoSet>AmmoSet_5x50mmCaseless_T</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>Snapshot</aiAimMode>
+			<aiUseBurstMode>True</aiUseBurstMode>
+			<aimedBurstShotCount>3</aimedBurstShotCount>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_Rifle</li>
+			<li>NoSwitch</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- Charge Cleaver -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>IM_Gun_ChargeCleaver</defName>
+		<statBases>
+			<Mass>35.00</Mass>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+			<SightsEfficiency>1</SightsEfficiency>
+			<ShotSpread>0.01</ShotSpread>
+			<SwayFactor>1.33</SwayFactor>
+			<Bulk>15.00</Bulk>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.08</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>true</hasStandardCommand>
+			<defaultProjectile>Bullet_12x64mmCharged</defaultProjectile>
+			<warmupTime>1.3</warmupTime>
+			<range>51</range>
+			<ticksBetweenBurstShots>6</ticksBetweenBurstShots>
+			<burstShotCount>12</burstShotCount>
+			<soundCast>Shot_ChargeBlaster</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>100</magazineSize>
+			<reloadTime>9.2</reloadTime>
+			<ammoSet>AmmoSet_12x64mmCharged</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aimedBurstShotCount>6</aimedBurstShotCount>
+			<aiAimMode>AimedShot</aiAimMode>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_Suppressive</li>
+			<li>NoSwitch</li>
+		</weaponTags>
+	</Operation>
+
+	<!-- Charge Repeater -->
+
+	<Operation Class="CombatExtended.PatchOperationMakeGunCECompatible">
+		<defName>IM_Gun_ChargeRepeater</defName>
+		<statBases>
+			<Mass>9.0</Mass>
+			<Bulk>13.0</Bulk>
+			<SwayFactor>1.26</SwayFactor>
+			<ShotSpread>0.05</ShotSpread>
+			<SightsEfficiency>1.1</SightsEfficiency>
+			<RangedWeapon_Cooldown>0.36</RangedWeapon_Cooldown>
+		</statBases>
+		<Properties>
+			<recoilAmount>1.16</recoilAmount>
+			<verbClass>CombatExtended.Verb_ShootCE</verbClass>
+			<hasStandardCommand>True</hasStandardCommand>
+			<defaultProjectile>Bullet_6x24mmCharged</defaultProjectile>
+			<burstShotCount>10</burstShotCount>
+			<ticksBetweenBurstShots>4</ticksBetweenBurstShots>
+			<warmupTime>1.2</warmupTime>
+			<range>62</range>
+			<soundCast>Shot_ChargeBlaster</soundCast>
+			<soundCastTail>GunTail_Heavy</soundCastTail>
+			<muzzleFlashScale>9</muzzleFlashScale>
+		</Properties>
+		<AmmoUser>
+			<magazineSize>100</magazineSize>
+			<reloadTime>6.8</reloadTime>
+			<ammoSet>AmmoSet_6x24mmCharged</ammoSet>
+		</AmmoUser>
+		<FireModes>
+			<aiAimMode>SuppressFire</aiAimMode>
+			<aiUseBurstMode>False</aiUseBurstMode>
+			<aimedBurstShotCount>5</aimedBurstShotCount>
+		</FireModes>
+		<weaponTags>
+			<li>CE_AI_Rifle</li>
+			<li>NoSwitch</li>
+		</weaponTags>
+	</Operation>
+
+</Patch>
