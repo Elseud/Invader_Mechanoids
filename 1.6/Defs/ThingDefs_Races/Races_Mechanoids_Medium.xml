@@ -144,15 +144,9 @@
     </abilities>
     <startingHediffs>
       <li>
-        <def>IM_AutocastQuickjet_Off</def>
-      </li>
-      <li>
         <def>IW_Hoverjet</def>
       </li>
     </startingHediffs>
-    <modExtensions>
-      <li Class="EBSGFramework.ForceStartingHediffsExtension" />
-    </modExtensions>
   </PawnKindDef>
 
   <!-- Ripper -->
@@ -576,14 +570,6 @@
       <li>IM_GrapplePull</li>
       <li>IM_CrushingBind</li>
     </abilities>
-    <startingHediffs>
-      <li>
-        <def>IM_AutocastCrushingBind_Off</def>
-      </li>
-    </startingHediffs>
-    <modExtensions>
-      <li Class="EBSGFramework.ForceStartingHediffsExtension" />
-    </modExtensions>
   </PawnKindDef>
 
 </Defs>

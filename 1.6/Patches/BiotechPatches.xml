@@ -25,9 +25,6 @@
                       <subNodes>
                         
                         <!--== General Ability AI ==-->
-                        <li Class="ThinkNode_ConditionalHashIntervalTick">
-                          <interval>45</interval>
-                          <subNodes>
 
                             <!-- Quickjet Jump -->
                             <li Class="ThinkNode_ConditionalHasAbility">
@@ -60,31 +57,6 @@
                                           <subNodes>
                                             <li Class="EL_IM.JobGiver_AICastAbilityOnFactionMembers">
                                               <ability>IM_SystemMerge</ability>
-                                            </li>
-                                          </subNodes>
-                                        </li>
-                                      </subNodes>
-                                    </li>
-                              </subNodes>
-                            </li>
-
-                            <!-- Grapple Pull -->
-                            <li Class="ThinkNode_ConditionalHasAbility">
-                              <ability>IM_CrushingBind</ability>
-                              <subNodes>
-                                    <li Class="EBSGFramework.ThinkNode_ConditionalTooManyNearbyThreats">
-                                      <dangerRadius>3</dangerRadius>
-                                      <minCount>1</minCount>
-                                      <subNodes>
-                                        <li Class="EBSGFramework.ThinkNode_ConditionalValidTargetForAbility">
-                                          <ability>IM_CrushingBind</ability>
-                                          <onlyHostiles>True</onlyHostiles>
-                                          <onlyInFaction>False</onlyInFaction>
-                                          <subNodes>
-                                            <li Class="EBSGFramework.JobGiver_AICastAnyOfAbilityOnEnemyTarget">
-                                              <abilities>
-                                                <li>IM_CrushingBind</li>
-                                              </abilities>
                                             </li>
                                           </subNodes>
                                         </li>
@@ -184,8 +156,6 @@
                               </subNodes>
                             </li>
                         
-                          </subNodes>
-                        </li>
 
                         <!--== Unmasked Infiltrator ==-->
                         <li Class="ThinkNode_ConditionalHasHediff">
@@ -265,13 +235,10 @@
               <!-- Quickjet Jump -->
               <li Class="EL_IM.ThinkNode_ConditionalCanDoConstantThinkTreeJobDrafted">
                 <subNodes>
-                  <li Class="ThinkNode_ConditionalHashIntervalTick">
-                    <interval>30</interval>
-                    <subNodes>
-                      <li Class="ThinkNode_ConditionalHasHediff">
-                        <hediff>IM_AutocastQuickjet_On</hediff>
+                      <li Class="ThinkNode_ConditionalHasAbility">
+                        <ability>IM_QuickjetJump</ability>
                         <subNodes>
-                          <li Class="ThinkNode_ConditionalHasAbility">
+                          <li Class="EBSGFramework.ThinkNode_ConditionalHasAbilityUsable">
                             <ability>IM_QuickjetJump</ability>
                             <subNodes>
                               <li Class="EBSGFramework.ThinkNode_ConditionalTooManyNearbyThreats">
@@ -287,8 +254,6 @@
                           </li>
                         </subNodes>
                       </li>
-                    </subNodes>
-                  </li>
                 </subNodes>
               </li>
 
@@ -298,10 +263,10 @@
                   <li Class="ThinkNode_ConditionalHashIntervalTick">
                     <interval>30</interval>
                     <subNodes>
-                      <li Class="ThinkNode_ConditionalHasHediff">
-                        <hediff>IM_AutocastSystemMerge_On</hediff>
+                      <li Class="ThinkNode_ConditionalHasAbility">
+                        <ability>IM_SystemMerge</ability>
                         <subNodes>
-                          <li Class="ThinkNode_ConditionalHasAbility">
+                          <li Class="EBSGFramework.ThinkNode_ConditionalHasAbilityUsable">
                             <ability>IM_SystemMerge</ability>
                             <subNodes>
                                   <li Class="EBSGFramework.ThinkNode_ConditionalTooManyNearbyThreats">
@@ -328,6 +293,40 @@
                   </li>
                 </subNodes>
               </li>
+
+              <!-- Crushing Bind -->
+            <li Class="EL_IM.ThinkNode_ConditionalCanDoConstantThinkTreeJobDrafted">
+            <subNodes>
+            <li Class="ThinkNode_ConditionalHasAbility">
+              <ability>IM_CrushingBind</ability>
+              <subNodes>
+                <li Class="EBSGFramework.ThinkNode_ConditionalHasAbilityUsable">
+                  <ability>IM_CrushingBind</ability>
+                  <subNodes>
+                    <li Class="EBSGFramework.ThinkNode_ConditionalTooManyNearbyThreats">
+                      <dangerRadius>3</dangerRadius>
+                      <minCount>1</minCount>
+                      <subNodes>
+                        <li Class="EBSGFramework.ThinkNode_ConditionalValidTargetForAbility">
+                          <ability>IM_CrushingBind</ability>
+                          <onlyHostiles>True</onlyHostiles>
+                          <onlyInFaction>False</onlyInFaction>
+                          <subNodes>
+                            <li Class="EBSGFramework.JobGiver_AICastAnyOfAbilityOnEnemyTarget">
+                              <abilities>
+                                <li>IM_CrushingBind</li>
+                              </abilities>
+                            </li>
+                          </subNodes>
+                        </li>
+                      </subNodes>
+                    </li>
+                  </subNodes>
+                </li>
+              </subNodes>
+            </li>
+            </subNodes>
+            </li>
 
               </subNodes>
             </li>

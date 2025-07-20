@@ -128,14 +128,6 @@
     <abilities>
       <li>IM_SystemMerge</li>
     </abilities>
-    <startingHediffs>
-      <li>
-        <def>IM_AutocastSystemMerge_Off</def>
-      </li>
-    </startingHediffs>
-    <modExtensions>
-      <li Class="EBSGFramework.ForceStartingHediffsExtension" />
-    </modExtensions>
   </PawnKindDef>
 
   <!-- Ripperling -->
