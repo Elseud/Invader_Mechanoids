@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!-- Ripper Toxin -->
+  <DamageDef>
+    <defName>IW_RipperToxin</defName>
+    <workerClass>DamageWorker_AddInjury</workerClass>
+    <label>ripper toxin</label>
+    <hasForcefulImpact>false</hasForcefulImpact>
+    <makesBlood>false</makesBlood>
+    <canInterruptJobs>false</canInterruptJobs>
+    <externalViolence>true</externalViolence>
+    <deathMessage>{0} has died of ripper toxin.</deathMessage>
+    <hediff>ChemicalBurn</hediff>
+    <armorCategory>Heat</armorCategory>
+    <defaultDamage>1</defaultDamage>
+    <defaultArmorPenetration>1</defaultArmorPenetration>
+    <canUseDeflectMetalEffect>false</canUseDeflectMetalEffect>
+  </DamageDef>
+  
+  <DamageDef ParentName="CutBase">
+    <defName>IM_RipperBlade</defName>
+    <additionalHediffs>
+      <li>
+        <hediff>IW_RipperToxin</hediff>
+        <severityPerDamageDealt>0.02</severityPerDamageDealt>
+        <victimSeverityScaling>ToxicResistance</victimSeverityScaling>
+        <inverseStatScaling>true</inverseStatScaling>
+      </li>
+    </additionalHediffs>
+  </DamageDef>
+
+  <ToolCapacityDef>
+    <defName>IM_RipperBlade</defName>
+  </ToolCapacityDef>
+
+  <ManeuverDef>
+    <defName>IM_RipperBlade</defName>
+    <requiredCapacity>IM_RipperBlade</requiredCapacity>
+    <verb>
+      <verbClass>Verb_MeleeAttackDamage</verbClass>
+      <meleeDamageDef>IM_RipperBlade</meleeDamageDef>
+    </verb>
+    <logEntryDef>MeleeAttack</logEntryDef>
+    <combatLogRulesHit>Maneuver_Smash_MeleeHit</combatLogRulesHit>
+    <combatLogRulesDeflect>Maneuver_Smash_MeleeDeflect</combatLogRulesDeflect>
+    <combatLogRulesMiss>Maneuver_Smash_MeleeMiss</combatLogRulesMiss>
+    <combatLogRulesDodge>Maneuver_Smash_MeleeDodge</combatLogRulesDodge>
+  </ManeuverDef>
+
+  <!-- Stinger Gun -->
+  <DamageDef ParentName="Bullet">
+    <defName>IM_StingerGunShot</defName>
+    <label>stinger gun bullet</label>
+    <additionalHediffs>
+      <li>
+        <hediff>ToxicBuildup</hediff>
+        <severityPerDamageDealt>0.0175</severityPerDamageDealt>
+        <victimSeverityScaling>ToxicResistance</victimSeverityScaling>
+        <inverseStatScaling>true</inverseStatScaling>
+        <victimSeverityScalingByInvBodySize>true</victimSeverityScalingByInvBodySize>
+      </li>
+    </additionalHediffs>
+    <impactSoundType>Bullet</impactSoundType>
+  </DamageDef>
+
+  <DamageDef ParentName="CutBase">
+    <defName>IM_PoisonBlade</defName>
+    <additionalHediffs>
+      <li>
+        <hediff>ToxicBuildup</hediff>
+        <severityPerDamageDealt>0.0075</severityPerDamageDealt>
+        <victimSeverityScaling>ToxicResistance</victimSeverityScaling>
+        <inverseStatScaling>true</inverseStatScaling>
+        <victimSeverityScalingByInvBodySize>true</victimSeverityScalingByInvBodySize>
+      </li>
+    </additionalHediffs>
+  </DamageDef>
+
+  <ToolCapacityDef>
+    <defName>IM_PoisonBlade</defName>
+  </ToolCapacityDef>
+
+  <ManeuverDef>
+    <defName>IM_PoisonBlade</defName>
+    <requiredCapacity>IM_PoisonBlade</requiredCapacity>
+    <verb>
+      <verbClass>Verb_MeleeAttackDamage</verbClass>
+      <meleeDamageDef>IM_PoisonBlade</meleeDamageDef>
+    </verb>
+    <logEntryDef>MeleeAttack</logEntryDef>
+    <combatLogRulesHit>Maneuver_Smash_MeleeHit</combatLogRulesHit>
+    <combatLogRulesDeflect>Maneuver_Smash_MeleeDeflect</combatLogRulesDeflect>
+    <combatLogRulesMiss>Maneuver_Smash_MeleeMiss</combatLogRulesMiss>
+    <combatLogRulesDodge>Maneuver_Smash_MeleeDodge</combatLogRulesDodge>
+  </ManeuverDef>
+
+  <!-- Stinger Rifle -->
+  <DamageDef ParentName="Bullet">
+    <defName>IM_StingerRifleShot</defName>
+    <label>stinger rifle bullet</label>
+    <additionalHediffs>
+      <li>
+        <hediff>ToxicBuildup</hediff>
+        <severityPerDamageDealt>0.0045</severityPerDamageDealt>
+        <victimSeverityScaling>ToxicResistance</victimSeverityScaling>
+        <inverseStatScaling>true</inverseStatScaling>
+        <victimSeverityScalingByInvBodySize>true</victimSeverityScalingByInvBodySize>
+      </li>
+    </additionalHediffs>
+    <impactSoundType>Bullet</impactSoundType>
+  </DamageDef>
+  
+</Defs>

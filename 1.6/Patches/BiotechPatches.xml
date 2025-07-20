@@ -1,0 +1,791 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Patch>
+
+  <Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Biotech</li>
+		</mods>
+    <match Class="PatchOperationSequence">
+			<success>Normal</success>
+			<operations>
+
+        <!-- Invader AI -->
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThinkTreeDef[defName = "MechConstant"]/thinkRoot/subNodes</xpath>
+          <value>
+
+            <!--===== Non-Player Mechs =====-->
+            <li Class="ThinkNode_ConditionalPlayerMech">
+              <invert>true</invert>
+              <subNodes>
+                <li Class="ThinkNode_ConditionalSpawned">
+                  <subNodes>
+                    <li Class="ThinkNode_ConditionalCanDoConstantThinkTreeJobNow">
+                      <subNodes>
+                        
+                        <!--== General Ability AI ==-->
+                        <li Class="ThinkNode_ConditionalHashIntervalTick">
+                          <interval>45</interval>
+                          <subNodes>
+
+                            <!-- Quickjet Jump -->
+                            <li Class="ThinkNode_ConditionalHasAbility">
+                              <ability>IM_QuickjetJump</ability>
+                              <subNodes>
+                                <li Class="EBSGFramework.ThinkNode_ConditionalTooManyNearbyThreats">
+                                  <dangerRadius>6</dangerRadius>
+                                  <minCount>1</minCount>
+                                  <subNodes>
+                                    <li Class="JobGiver_AIJumpEscapeEnemies">
+                                      <ability>IM_QuickjetJump</ability>
+                                    </li>
+                                  </subNodes>
+                                </li>
+                              </subNodes>
+                            </li>
+
+                            <!-- System Merge -->
+                            <li Class="ThinkNode_ConditionalHasAbility">
+                              <ability>IM_SystemMerge</ability>
+                              <subNodes>
+                                <li Class="ThinkNode_ConditionalAbilityCastLastTick">
+                                  <ability>IM_SystemMerge</ability>
+                                  <minTicksAgo>300</minTicksAgo>
+                                  <subNodes>
+                                    <li Class="EBSGFramework.ThinkNode_ConditionalTooManyNearbyThreats">
+                                      <dangerRadius>40</dangerRadius>
+                                      <minCount>1</minCount>
+                                      <subNodes>
+                                        <li Class="EBSGFramework.ThinkNode_ConditionalValidTargetForAbility">
+                                          <ability>IM_SystemMerge</ability>
+                                          <onlyHostiles>False</onlyHostiles>
+                                          <onlyInFaction>True</onlyInFaction>
+                                          <subNodes>
+                                            <li Class="EL_IM.JobGiver_AICastAbilityOnFactionMembers">
+                                              <ability>IM_SystemMerge</ability>
+                                            </li>
+                                          </subNodes>
+                                        </li>
+                                      </subNodes>
+                                    </li>
+                                  </subNodes>
+                                </li>
+                              </subNodes>
+                            </li>
+
+                            <!-- Grapple Pull -->
+                            <li Class="ThinkNode_ConditionalHasAbility">
+                              <ability>IM_CrushingBind</ability>
+                              <subNodes>
+                                <li Class="ThinkNode_ConditionalAbilityCastLastTick">
+                                  <ability>IM_CrushingBind</ability>
+                                  <minTicksAgo>180</minTicksAgo>
+                                  <subNodes>
+                                    <li Class="EBSGFramework.ThinkNode_ConditionalTooManyNearbyThreats">
+                                      <dangerRadius>3</dangerRadius>
+                                      <minCount>1</minCount>
+                                      <subNodes>
+                                        <li Class="EBSGFramework.ThinkNode_ConditionalValidTargetForAbility">
+                                          <ability>IM_CrushingBind</ability>
+                                          <onlyHostiles>True</onlyHostiles>
+                                          <onlyInFaction>False</onlyInFaction>
+                                          <subNodes>
+                                            <li Class="EBSGFramework.JobGiver_AICastAnyOfAbilityOnEnemyTarget">
+                                              <abilities>
+                                                <li>IM_CrushingBind</li>
+                                              </abilities>
+                                            </li>
+                                          </subNodes>
+                                        </li>
+                                      </subNodes>
+                                    </li>
+                                  </subNodes>
+                                </li>
+                              </subNodes>
+                            </li>
+
+                            <!-- Grapple Pull -->
+                            <li Class="ThinkNode_ConditionalHasAbility">
+                              <ability>IM_GrapplePull</ability>
+                              <subNodes>
+                                <li Class="ThinkNode_ConditionalAbilityCastLastTick">
+                                  <ability>IM_GrapplePull</ability>
+                                  <minTicksAgo>180</minTicksAgo>
+                                  <subNodes>
+                                    <li Class="EBSGFramework.ThinkNode_ConditionalTooManyNearbyThreats">
+                                      <dangerRadius>21</dangerRadius>
+                                      <minCount>1</minCount>
+                                      <subNodes>
+                                        <li Class="EBSGFramework.ThinkNode_ConditionalValidTargetForAbility">
+                                          <ability>IM_GrapplePull</ability>
+                                          <onlyHostiles>True</onlyHostiles>
+                                          <onlyInFaction>False</onlyInFaction>
+                                          <subNodes>
+                                            <li Class="EBSGFramework.JobGiver_AICastAnyOfAbilityOnEnemyTarget">
+                                              <abilities>
+                                                <li>IM_GrapplePull</li>
+                                              </abilities>
+                                            </li>
+                                          </subNodes>
+                                        </li>
+                                      </subNodes>
+                                    </li>
+                                  </subNodes>
+                                </li>
+                              </subNodes>
+                            </li>
+
+                            <!-- Crushing Bind -->
+                            <li Class="ThinkNode_ConditionalHasAbility">
+                              <ability>IM_CrushingBind</ability>
+                              <subNodes>
+                                <li Class="ThinkNode_ConditionalAbilityCastLastTick">
+                                  <ability>IM_CrushingBind</ability>
+                                  <minTicksAgo>120</minTicksAgo>
+                                  <subNodes>
+                                    <li Class="EBSGFramework.ThinkNode_ConditionalTooManyNearbyThreats">
+                                      <dangerRadius>3</dangerRadius>
+                                      <minCount>1</minCount>
+                                      <subNodes>
+                                        <li Class="EBSGFramework.ThinkNode_ConditionalValidTargetForAbility">
+                                          <ability>IM_CrushingBind</ability>
+                                          <onlyHostiles>True</onlyHostiles>
+                                          <onlyInFaction>False</onlyInFaction>
+                                          <subNodes>
+                                            <li Class="EBSGFramework.JobGiver_AICastAnyOfAbilityOnEnemyTarget">
+                                              <abilities>
+                                                <li>IM_CrushingBind</li>
+                                              </abilities>
+                                            </li>
+                                          </subNodes>
+                                        </li>
+                                      </subNodes>
+                                    </li>
+                                  </subNodes>
+                                </li>
+                              </subNodes>
+                            </li>
+
+                            <!-- Conceal -->
+                            <li Class="ThinkNode_ConditionalHasHediff">
+                              <hediff>IM_Unmasked</hediff>
+                              <invert>true</invert>
+                              <subNodes>
+                                <li Class="ThinkNode_ConditionalHasAbility">
+                                  <ability>IM_Conceal</ability>
+                                  <subNodes>
+                                    <li Class="ThinkNode_ConditionalAbilityCastLastTick">
+                                      <ability>IM_Conceal</ability>
+                                      <minTicksAgo>240</minTicksAgo>
+                                      <subNodes>
+                                        <li Class="EBSGFramework.ThinkNode_ConditionalTooManyNearbyThreats">
+                                          <dangerRadius>13</dangerRadius>
+                                          <minCount>1</minCount>
+                                          <subNodes>
+                                            <li Class="JobGiver_AICastAbilityOnSelf">
+                                              <ability>IM_Conceal</ability>
+                                            </li>
+                                          </subNodes>
+                                        </li>
+                                      </subNodes>
+                                    </li>
+                                  </subNodes>
+                                </li>
+                                <!-- Reposition when invisible -->
+                                <li Class="EBSGFramework.ThinkNode_ConditionalHasAnyOfHediff">
+                                  <hediffs>
+                                    <li>IM_Concealed</li>
+                                    <li>IM_ReactiveCloak</li>
+                                  </hediffs>
+                                  <subNodes>
+                                    <li Class="EBSGFramework.ThinkNode_ConditionalTooManyNearbyThreats">
+                                      <dangerRadius>13</dangerRadius>
+                                      <minCount>3</minCount>
+                                      <subNodes>
+                                        <li Class="JobGiver_FleeForDistance">
+                                          <enemyDistToFleeRange>0~12.9</enemyDistToFleeRange>
+                                          <fleeDistRange>13.9~21.9</fleeDistRange>
+                                        </li>
+                                      </subNodes>
+                                    </li>
+                                  </subNodes>
+                                </li>
+                              </subNodes>
+                            </li>
+                        
+                          </subNodes>
+                        </li>
+
+                        <!--== Unmasked Infiltrator ==-->
+                        <li Class="ThinkNode_ConditionalHasHediff">
+                          <hediff>IM_Unmasked</hediff>
+                          <subNodes>
+
+                            <!-- Reposition when invisible - inserted separately for unmasked infiltrators to make them listen -->
+                            <li Class="EBSGFramework.ThinkNode_ConditionalHasAnyOfHediff">
+                              <hediffs>
+                                <li>IM_Concealed</li>
+                                <li>IM_ReactiveCloak</li>
+                              </hediffs>
+                              <subNodes>
+                                <li Class="EBSGFramework.ThinkNode_ConditionalTooManyNearbyThreats">
+                                  <dangerRadius>13</dangerRadius>
+                                  <minCount>3</minCount>
+                                  <subNodes>
+                                    <li Class="JobGiver_FleeForDistance">
+                                      <enemyDistToFleeRange>0~12.9</enemyDistToFleeRange>
+                                      <fleeDistRange>13.9~21.9</fleeDistRange>
+                                    </li>
+                                  </subNodes>
+                                </li>
+                              </subNodes>
+                            </li>
+
+                            <!-- Try to Conceal if surrounded, if not/can't, attack -->
+                            <li Class="EBSGFramework.ThinkNode_ConditionalHasAnyOfHediff">
+                              <hediffs>
+                                <li>IM_Concealed</li>
+                                <li>IM_ReactiveCloak</li>
+                              </hediffs>
+                              <invert>true</invert>
+                              <subNodes>
+                                <li Class="ThinkNode_ConditionalHasAbility">
+                                  <ability>IM_Conceal</ability>
+                                  <subNodes>
+                                    <li Class="ThinkNode_ConditionalAbilityCastLastTick">
+                                      <ability>IM_Conceal</ability>
+                                      <minTicksAgo>240</minTicksAgo>
+                                      <subNodes>
+                                        <li Class="EBSGFramework.ThinkNode_ConditionalTooManyNearbyThreats">
+                                          <dangerRadius>13</dangerRadius>
+                                          <minCount>3</minCount>
+                                          <subNodes>
+                                            <li Class="JobGiver_AICastAbilityOnSelf">
+                                              <ability>IM_Conceal</ability>
+                                            </li>
+                                          </subNodes>
+                                        </li>
+                                      </subNodes>
+                                    </li>
+                                  </subNodes>
+                                </li>
+                                <li Class="JobGiver_AIFightEnemies">
+                                  <targetAcquireRadius>65</targetAcquireRadius>
+                                  <targetKeepRadius>72</targetKeepRadius>
+                                </li>
+                                <li Class="JobGiver_AITrashColonyClose" />
+                                <li Class="JobGiver_AITrashBuildingsDistant" />
+                                <li Class="JobGiver_AIGotoNearestHostile" />
+                                <li Class="JobGiver_AITrashBuildingsDistant">
+                                  <attackAllInert>true</attackAllInert>
+                                </li>
+                                <li Class="JobGiver_WanderAnywhere" />
+                              </subNodes>
+                            </li>
+
+                          </subNodes>
+                        </li>
+
+                      </subNodes>
+                    </li>
+                  </subNodes>
+                </li>
+              </subNodes>
+            </li>
+
+            <!--===== Player Mechs =====-->
+            <li Class="ThinkNode_ConditionalPlayerMech">
+              <subNodes>
+
+              <!-- Quickjet Jump -->
+              <li Class="EL_IM.ThinkNode_ConditionalCanDoConstantThinkTreeJobDrafted">
+                <subNodes>
+                  <li Class="ThinkNode_ConditionalHashIntervalTick">
+                    <interval>30</interval>
+                    <subNodes>
+                      <li Class="ThinkNode_ConditionalHasHediff">
+                        <hediff>IM_AutocastQuickjet_On</hediff>
+                        <subNodes>
+                          <li Class="ThinkNode_ConditionalHasAbility">
+                            <ability>IM_QuickjetJump</ability>
+                            <subNodes>
+                              <li Class="EBSGFramework.ThinkNode_ConditionalTooManyNearbyThreats">
+                                <dangerRadius>6</dangerRadius>
+                                <minCount>1</minCount>
+                                <subNodes>
+                                  <li Class="JobGiver_AIJumpEscapeEnemies">
+                                    <ability>IM_QuickjetJump</ability>
+                                  </li>
+                                </subNodes>
+                              </li>
+                            </subNodes>
+                          </li>
+                        </subNodes>
+                      </li>
+                    </subNodes>
+                  </li>
+                </subNodes>
+              </li>
+
+              <!-- System Merge -->
+              <li Class="EL_IM.ThinkNode_ConditionalCanDoConstantThinkTreeJobDrafted">
+                <subNodes>
+                  <li Class="ThinkNode_ConditionalHashIntervalTick">
+                    <interval>30</interval>
+                    <subNodes>
+                      <li Class="ThinkNode_ConditionalHasHediff">
+                        <hediff>IM_AutocastSystemMerge_On</hediff>
+                        <subNodes>
+                          <li Class="ThinkNode_ConditionalHasAbility">
+                            <ability>IM_SystemMerge</ability>
+                            <subNodes>
+                              <li Class="ThinkNode_ConditionalAbilityCastLastTick">
+                                <ability>IM_SystemMerge</ability>
+                                <minTicksAgo>300</minTicksAgo>
+                                <subNodes>
+                                  <li Class="EBSGFramework.ThinkNode_ConditionalTooManyNearbyThreats">
+                                    <dangerRadius>40</dangerRadius>
+                                    <minCount>1</minCount>
+                                    <subNodes>
+                                      <li Class="EBSGFramework.ThinkNode_ConditionalValidTargetForAbility">
+                                        <ability>IM_SystemMerge</ability>
+                                        <onlyHostiles>False</onlyHostiles>
+                                        <onlyInFaction>True</onlyInFaction>
+                                        <subNodes>
+                                          <li Class="EL_IM.JobGiver_AICastAbilityOnFactionMembers">
+                                            <ability>IM_SystemMerge</ability>
+                                          </li>
+                                        </subNodes>
+                                      </li>
+                                    </subNodes>
+                                  </li>
+                                </subNodes>
+                              </li>
+                            </subNodes>
+                          </li>
+                        </subNodes>
+                      </li>
+                    </subNodes>
+                  </li>
+                </subNodes>
+              </li>
+
+              </subNodes>
+            </li>
+
+         </value>
+        </li>
+
+        <!-- ThinkTree Constant -->
+        <li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName = "IM_Mech_Skirmisher"]/race/thinkTreeConstant</xpath>
+					<value>
+            <thinkTreeConstant>MechConstant</thinkTreeConstant>
+					</value>
+				</li>
+
+        <li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName = "IM_Mech_Aide"]/race/thinkTreeConstant</xpath>
+					<value>
+            <thinkTreeConstant>MechConstant</thinkTreeConstant>
+					</value>
+				</li>
+
+        <li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName = "IM_Mech_Infiltrator"]/race/thinkTreeConstant</xpath>
+					<value>
+            <thinkTreeConstant>MechConstant</thinkTreeConstant>
+					</value>
+				</li>
+
+        <!-- Gestation and resurrection -->
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/RecipeDef[defName = "ResurrectLightMech"]/fixedIngredientFilter/thingDefs</xpath>
+          <value>
+            <li>Corpse_IM_Mech_Aide</li>
+          </value>
+        </li>
+        
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/RecipeDef[defName = "ResurrectMediumMech"]/fixedIngredientFilter/thingDefs</xpath>
+          <value>
+            <li>Corpse_IM_Mech_Skirmisher</li>
+            <li>Corpse_IM_Mech_Ripper</li>
+            <li>Corpse_IM_Mech_Infiltrator</li>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/RecipeDef[defName = "ResurrectHeavyMech"]/fixedIngredientFilter/thingDefs</xpath>
+          <value>
+            <li>Corpse_IM_Mech_Templar</li>
+            <li>Corpse_IM_Mech_Berserker</li>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/RecipeDef[defName = "ResurrectUltraheavyMech"]/fixedIngredientFilter/thingDefs</xpath>
+          <value>
+            <li>Corpse_IM_Mech_Bombardier</li>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName = "MechGestator"]/recipes</xpath>
+          <value>
+            <li>IM_Aide</li>
+          </value>
+        </li>
+        
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName = "LargeMechGestator"]/recipes</xpath>
+          <value>
+            <li>IM_Skirmisher</li>
+            <li>IM_Ripper</li>
+            <li>IM_Infiltrator</li>
+            <li>IM_Templar</li>
+            <li>IM_Berserker</li>
+            <li>IM_Bombardier</li>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs</xpath>
+          <value>
+
+            <!-- Aide -->
+            <RecipeDef ParentName="LightMechanoidRecipe">
+              <defName>IM_Aide</defName>
+              <label>gestate aide</label>
+              <description>Gestate an aide mechanoid.</description>
+              <researchPrerequisite>HighMechtech</researchPrerequisite>
+              <ingredients Inherit="False">
+                <li>
+                  <filter>
+                    <thingDefs>
+                      <li>Steel</li>
+                    </thingDefs>
+                  </filter>
+                  <count>65</count>
+                </li>
+                <li>
+                  <filter>
+                    <thingDefs>
+                      <li>SubcoreHigh</li>
+                    </thingDefs>
+                  </filter>
+                 <count>1</count>
+                </li>
+              </ingredients>
+              <products>
+                <IM_Mech_Aide>1</IM_Mech_Aide>
+              </products>
+              <descriptionHyperlinks>
+                <ThingDef>IM_Mech_Aide</ThingDef>
+              </descriptionHyperlinks>
+            </RecipeDef>
+
+            <!-- Skirmisher -->
+            <RecipeDef ParentName="MediumMechanoidRecipe">
+              <defName>IM_Skirmisher</defName>
+              <label>gestate skirmisher</label>
+              <description>Gestate a skirmisher mechanoid.</description>
+              <ingredients Inherit="False">
+                <li>
+                  <filter>
+                    <thingDefs>
+                      <li>Steel</li>
+                    </thingDefs>
+                  </filter>
+                  <count>85</count>
+                </li>
+                <li>
+                  <filter>
+                    <thingDefs>
+                      <li>Plasteel</li>
+                    </thingDefs>
+                  </filter>
+                  <count>35</count>
+                </li>
+                <li>
+                  <filter>
+                    <thingDefs>
+                      <li>ComponentIndustrial</li>
+                    </thingDefs>
+                  </filter>
+                 <count>4</count>
+                </li>
+                <li>
+                  <filter>
+                    <thingDefs>
+                      <li>SubcoreRegular</li>
+                    </thingDefs>
+                  </filter>
+                 <count>1</count>
+                </li>
+              </ingredients>
+              <products>
+                <IM_Mech_Skirmisher>1</IM_Mech_Skirmisher>
+              </products>
+              <descriptionHyperlinks>
+                <ThingDef>IM_Mech_Skirmisher</ThingDef>
+              </descriptionHyperlinks>
+            </RecipeDef>
+
+            <!-- Ripper -->
+            <RecipeDef ParentName="MediumMechanoidRecipe">
+              <defName>IM_Ripper</defName>
+              <label>gestate ripper</label>
+              <description>Gestate a ripper mechanoid.</description>
+              <ingredients Inherit="False">
+                <li>
+                  <filter>
+                    <thingDefs>
+                      <li>Steel</li>
+                    </thingDefs>
+                  </filter>
+                  <count>110</count>
+                </li>
+                <li>
+                  <filter>
+                    <thingDefs>
+                      <li>Plasteel</li>
+                    </thingDefs>
+                  </filter>
+                  <count>55</count>
+                </li>
+                <li>
+                  <filter>
+                    <thingDefs>
+                      <li>ComponentIndustrial</li>
+                    </thingDefs>
+                  </filter>
+                 <count>4</count>
+                </li>
+                <li>
+                  <filter>
+                    <thingDefs>
+                      <li>SubcoreRegular</li>
+                    </thingDefs>
+                  </filter>
+                 <count>1</count>
+                </li>
+              </ingredients>
+              <products>
+                <IM_Mech_Ripper>1</IM_Mech_Ripper>
+              </products>
+              <descriptionHyperlinks>
+                <ThingDef>IM_Mech_Ripper</ThingDef>
+              </descriptionHyperlinks>
+            </RecipeDef>
+
+            <!-- Infiltrator -->
+            <RecipeDef ParentName="MediumMechanoidRecipe">
+              <defName>IM_Infiltrator</defName>
+              <label>gestate infiltrator</label>
+              <description>Gestate an infiltrator mechanoid.</description>
+              <researchPrerequisite>HighMechtech</researchPrerequisite>
+              <ingredients Inherit="False">
+                <li>
+                  <filter>
+                    <thingDefs>
+                      <li>Steel</li>
+                    </thingDefs>
+                  </filter>
+                  <count>120</count>
+                </li>
+                <li>
+                  <filter>
+                    <thingDefs>
+                      <li>Plasteel</li>
+                    </thingDefs>
+                  </filter>
+                  <count>60</count>
+                </li>
+                <li>
+                  <filter>
+                    <thingDefs>
+                      <li>ComponentIndustrial</li>
+                    </thingDefs>
+                  </filter>
+                 <count>6</count>
+                </li>
+                <li>
+                  <filter>
+                    <thingDefs>
+                      <li>SubcoreHigh</li>
+                    </thingDefs>
+                  </filter>
+                 <count>1</count>
+                </li>
+              </ingredients>
+              <products>
+                <IM_Mech_Infiltrator>1</IM_Mech_Infiltrator>
+              </products>
+              <descriptionHyperlinks>
+                <ThingDef>IM_Mech_Infiltrator</ThingDef>
+              </descriptionHyperlinks>
+            </RecipeDef>
+
+            <!-- Templar -->
+            <RecipeDef ParentName="HeavyMechanoidRecipe">
+              <defName>IM_Templar</defName>
+              <label>gestate templar</label>
+              <description>Gestate a templar mechanoid.</description>
+              <researchPrerequisite>HighMechtech</researchPrerequisite>
+              <ingredients Inherit="False">
+                <li>
+                  <filter>
+                    <thingDefs>
+                      <li>Steel</li>
+                    </thingDefs>
+                  </filter>
+                  <count>220</count>
+                </li>
+                <li>
+                  <filter>
+                    <thingDefs>
+                      <li>Plasteel</li>
+                    </thingDefs>
+                  </filter>
+                  <count>110</count>
+                </li>
+                <li>
+                  <filter>
+                    <thingDefs>
+                      <li>ComponentIndustrial</li>
+                    </thingDefs>
+                  </filter>
+                 <count>6</count>
+                </li>
+                <li>
+                  <filter>
+                    <thingDefs>
+                      <li>SubcoreHigh</li>
+                    </thingDefs>
+                  </filter>
+                 <count>1</count>
+                </li>
+              </ingredients>
+              <products>
+                <IM_Mech_Templar>1</IM_Mech_Templar>
+              </products>
+              <descriptionHyperlinks>
+                <ThingDef>IM_Mech_Templar</ThingDef>
+              </descriptionHyperlinks>
+            </RecipeDef>
+
+            <!-- Berserker -->
+            <RecipeDef ParentName="HeavyMechanoidRecipe">
+              <defName>IM_Berserker</defName>
+              <label>gestate berserker</label>
+              <description>Gestate a berserker mechanoid.</description>
+              <researchPrerequisite>HighMechtech</researchPrerequisite>
+              <ingredients Inherit="False">
+                <li>
+                  <filter>
+                    <thingDefs>
+                      <li>Steel</li>
+                    </thingDefs>
+                  </filter>
+                  <count>220</count>
+                </li>
+                <li>
+                  <filter>
+                    <thingDefs>
+                      <li>Plasteel</li>
+                    </thingDefs>
+                  </filter>
+                  <count>110</count>
+                </li>
+                <li>
+                  <filter>
+                    <thingDefs>
+                      <li>ComponentIndustrial</li>
+                    </thingDefs>
+                  </filter>
+                 <count>6</count>
+                </li>
+                <li>
+                  <filter>
+                    <thingDefs>
+                      <li>SubcoreHigh</li>
+                    </thingDefs>
+                  </filter>
+                 <count>1</count>
+                </li>
+              </ingredients>
+              <products>
+                <IM_Mech_Berserker>1</IM_Mech_Berserker>
+              </products>
+              <descriptionHyperlinks>
+                <ThingDef>IM_Mech_Berserker</ThingDef>
+              </descriptionHyperlinks>
+            </RecipeDef>
+
+            <!-- Bombardier -->
+            <RecipeDef ParentName="HeavyMechanoidRecipe">
+              <defName>IM_Bombardier</defName>
+              <label>gestate bombardier</label>
+              <description>Gestate a bombardier mechanoid.</description>
+              <gestationCycles>10</gestationCycles>
+              <researchPrerequisite>HighMechtech</researchPrerequisite>
+              <ingredients Inherit="False">
+                <li>
+                  <filter>
+                    <thingDefs>
+                      <li>Steel</li>
+                    </thingDefs>
+                  </filter>
+                  <count>300</count>
+                </li>
+                <li>
+                  <filter>
+                    <thingDefs>
+                      <li>Plasteel</li>
+                    </thingDefs>
+                  </filter>
+                  <count>300</count>
+                </li>
+                <li>
+                  <filter>
+                    <thingDefs>
+                      <li>SignalChip</li>
+                    </thingDefs>
+                  </filter>
+                 <count>1</count>
+                </li>
+                <li>
+                  <filter>
+                    <thingDefs>
+                      <li>ComponentSpacer</li>
+                    </thingDefs>
+                  </filter>
+                 <count>2</count>
+                </li>
+                <li>
+                  <filter>
+                    <thingDefs>
+                      <li>SubcoreHigh</li>
+                    </thingDefs>
+                  </filter>
+                 <count>1</count>
+                </li>
+              </ingredients>
+              <products>
+                <IM_Mech_Bombardier>1</IM_Mech_Bombardier>
+              </products>
+              <descriptionHyperlinks>
+                <ThingDef>IM_Mech_Bombardier</ThingDef>
+              </descriptionHyperlinks>
+            </RecipeDef>
+            
+          </value>
+        </li>
+
+			</operations>
+		</match>
+  </Operation>
+
+</Patch>

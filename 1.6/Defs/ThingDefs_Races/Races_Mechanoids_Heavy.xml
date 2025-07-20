@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!-- Templar -->
+  <ThingDef ParentName="BaseMechanoid">
+		<defName>IM_Mech_Templar</defName>
+		<label>templar</label>
+		<description>A heavy infantry mechanoid designed to excel in both close-quarters and ranged combat. The templar's Zeal Drive continuously improves its combat performance the longer it remains on the field of battle. Its heavy armor and armaments guarantee staying power during prolonged engagements.</description>
+		<uiIconScale>1.3</uiIconScale>
+    <statBases>
+			<MarketValue>1400</MarketValue>
+			<MoveSpeed>2.3</MoveSpeed>
+			<ArmorRating_Blunt>0.37</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.75</ArmorRating_Sharp>
+			<BandwidthCost MayRequire="Ludeon.Rimworld.Biotech">4</BandwidthCost>
+			<ControlTakingTime MayRequire="Ludeon.Rimworld.Biotech">24</ControlTakingTime>
+			<ToxicEnvironmentResistance MayRequire="Ludeon.RimWorld.Biotech">1</ToxicEnvironmentResistance>
+			<MechEnergyLossPerHP MayRequire="Ludeon.Rimworld.Biotech">0.2</MechEnergyLossPerHP>
+			<WastepacksPerRecharge MayRequire="Ludeon.Rimworld.Biotech">5</WastepacksPerRecharge>
+		</statBases>
+		<tools>
+			<li>
+				<label>left fist</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>15</power>
+				<cooldownTime>2</cooldownTime>
+				<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+				<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+			</li>
+			<li>
+				<label>right fist</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>15</power>
+				<cooldownTime>2</cooldownTime>
+				<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+				<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+			</li>
+			<li>
+				<label>head</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>2</cooldownTime>
+				<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+				<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+				<chanceFactor>0.2</chanceFactor>
+			</li>
+		</tools>
+		<race>
+			<body>IM_MechanicalMuton</body>
+			<mechWeightClass>Heavy</mechWeightClass>
+			<baseHealthScale>1.8</baseHealthScale>
+			<intelligence>ToolUser</intelligence>
+      <thinkTreeMain>Mechanoid</thinkTreeMain>
+      <baseBodySize>2</baseBodySize>
+			<lifeStageAges>
+        <li>
+          <def>MechanoidFullyFormed</def>
+          <minAge>0</minAge>
+          <soundWounded>IM_Pawn_Templar_Wounded</soundWounded>
+          <soundDeath>IM_Pawn_Templar_Death</soundDeath>
+          <soundCall>IM_Pawn_Templar_Call</soundCall>
+        </li>
+        <li MayRequire="Ludeon.RimWorld.Biotech">
+          <def>MechanoidFullyFormed</def>
+          <minAge>100</minAge>
+          <soundWounded>IM_Pawn_Templar_Wounded</soundWounded>
+          <soundDeath>IM_Pawn_Templar_Death</soundDeath>
+          <soundCall>IM_Pawn_Templar_Call</soundCall>
+        </li>
+      </lifeStageAges>
+      <soundMeleeHitPawn>Pawn_Melee_MechanoidBash_HitPawn</soundMeleeHitPawn>
+      <soundMeleeHitBuilding>Pawn_Melee_MechanoidBash_HitBuilding</soundMeleeHitBuilding>
+      <soundMeleeMiss>Pawn_Melee_MechanoidBash_Miss</soundMeleeMiss>
+      <detritusLeavings>
+        <li>
+          <def>ChunkMechanoidSlag</def>
+          <texOverrideIndex>0</texOverrideIndex>
+          <spawnChance>0.5</spawnChance>
+        </li>
+        <li>
+          <def>ChunkMechanoidSlag</def>
+          <texOverrideIndex>3</texOverrideIndex>
+          <spawnChance>0.5</spawnChance>
+        </li>
+        <li>
+          <def>ChunkMechanoidSlag</def>
+          <texOverrideIndex>1</texOverrideIndex>
+          <spawnChance>0.5</spawnChance>
+        </li>
+      </detritusLeavings>
+		</race>
+		<butcherProducts>
+		  <Steel>20</Steel>
+      <Plasteel>10</Plasteel>
+		</butcherProducts>
+  </ThingDef>
+
+  <PawnKindDef ParentName="BaseMechanoidKind">
+    <defName>IM_Mech_Templar</defName>
+    <label>templar</label>
+    <race>IM_Mech_Templar</race>
+    <combatPower>210</combatPower>
+    <lifeStages>
+	    <li MayRequire="Ludeon.RimWorld.Biotech">
+        <bodyGraphicData>
+          <texPath>Things/Pawn/Mechanoid/Templar/TemplarClean</texPath>
+          <maskPath>Things/Pawn/Mechanoid/AllegianceOverlays/Mech_Templar</maskPath>
+          <shaderType>CutoutWithOverlay</shaderType>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>2.2</drawSize>
+          <shadowData>
+            <volume>(0.6, 0.8, 0.6)</volume>
+          </shadowData>
+        </bodyGraphicData>
+      </li>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Pawn/Mechanoid/Templar/Templar</texPath>
+          <maskPath>Things/Pawn/Mechanoid/AllegianceOverlays/Mech_Templar</maskPath>
+          <shaderType>CutoutWithOverlay</shaderType>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>2.2</drawSize>
+          <shadowData>
+            <volume>(0.6, 0.8, 0.6)</volume>
+          </shadowData>
+        </bodyGraphicData>
+      </li>
+    </lifeStages>
+    <techHediffsChance MayRequire="Ludeon.RimWorld.Biotech">1</techHediffsChance>
+    <techHediffsMoney>9999~9999</techHediffsMoney>
+    <weaponMoney>9999~9999</weaponMoney>
+    <weaponTags>
+      <li>IM_ChargeCleaver</li>
+    </weaponTags>
+    <startingHediffs>
+      <li>
+        <def>IM_ZealDrive</def>
+        <severity>0.001</severity>
+      </li>
+    </startingHediffs>
+    <modExtensions>
+      <li Class="EBSGFramework.ForceStartingHediffsExtension" />
+    </modExtensions>
+  </PawnKindDef>
+
+  <!-- Berserker -->
+  <ThingDef ParentName="BaseMechanoid">
+		<defName>IM_Mech_Berserker</defName>
+		<label>berserker</label>
+		<description>A heavy combat mechanoid specialised in close-quarters engagements. The berserker's imposing frame is designed to draw enemy fire on approach, with every received hit enhancing its speed and strength of its stunning blows. The Rage Drive's improvements do not come without risk - at high intensity levels, it can overload critical subsystems, causing berserk-inducing malfunctions.</description>
+		<uiIconScale>1.2</uiIconScale>
+    <statBases>
+			<MarketValue>1400</MarketValue>
+			<MoveSpeed>3.2</MoveSpeed>
+			<ArmorRating_Blunt>0.3</ArmorRating_Blunt>
+			<ArmorRating_Sharp>0.6</ArmorRating_Sharp>
+			<BandwidthCost MayRequire="Ludeon.Rimworld.Biotech">3</BandwidthCost>
+			<ControlTakingTime MayRequire="Ludeon.Rimworld.Biotech">24</ControlTakingTime>
+			<ToxicEnvironmentResistance MayRequire="Ludeon.RimWorld.Biotech">1</ToxicEnvironmentResistance>
+			<MechEnergyLossPerHP MayRequire="Ludeon.Rimworld.Biotech">0.2</MechEnergyLossPerHP>
+			<WastepacksPerRecharge MayRequire="Ludeon.Rimworld.Biotech">5</WastepacksPerRecharge>
+		</statBases>
+		<tools>
+			<li>
+				<label>left fist</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>22</power>
+				<cooldownTime>2.4</cooldownTime>
+				<linkedBodyPartsGroup>LeftHand</linkedBodyPartsGroup>
+				<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+        <extraMeleeDamages>
+          <li>
+            <def>Stun</def>
+            <amount>6</amount>
+            <chance>0.4</chance>
+          </li>
+        </extraMeleeDamages>
+			</li>
+			<li>
+				<label>right fist</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>22</power>
+				<cooldownTime>2.4</cooldownTime>
+				<linkedBodyPartsGroup>RightHand</linkedBodyPartsGroup>
+				<alwaysTreatAsWeapon>true</alwaysTreatAsWeapon>
+        <extraMeleeDamages>
+          <li>
+            <def>Stun</def>
+            <amount>6</amount>
+            <chance>0.4</chance>
+          </li>
+        </extraMeleeDamages>
+			</li>
+			<li>
+				<label>head</label>
+				<capacities>
+					<li>Blunt</li>
+				</capacities>
+				<power>10</power>
+				<cooldownTime>2</cooldownTime>
+				<linkedBodyPartsGroup>HeadAttackTool</linkedBodyPartsGroup>
+				<ensureLinkedBodyPartsGroupAlwaysUsable>true</ensureLinkedBodyPartsGroupAlwaysUsable>
+				<chanceFactor>0.2</chanceFactor>
+			</li>
+		</tools>
+		<race>
+			<body>IM_MechanicalMuton</body>
+			<mechWeightClass>Heavy</mechWeightClass>
+			<baseHealthScale>3.6</baseHealthScale>
+			<intelligence>ToolUser</intelligence>
+      <thinkTreeMain>Mechanoid</thinkTreeMain>
+      <baseBodySize>2.4</baseBodySize>
+			<lifeStageAges>
+        <li>
+          <def>MechanoidFullyFormed</def>
+          <minAge>0</minAge>
+          <soundWounded>IM_Pawn_Berserker_Wounded</soundWounded>
+          <soundDeath>IM_Pawn_Berserker_Death</soundDeath>
+          <soundCall>IM_Pawn_Berserker_Call</soundCall>
+        </li>
+        <li MayRequire="Ludeon.RimWorld.Biotech">
+          <def>MechanoidFullyFormed</def>
+          <minAge>100</minAge>
+          <soundWounded>IM_Pawn_Berserker_Wounded</soundWounded>
+          <soundDeath>IM_Pawn_Berserker_Death</soundDeath>
+          <soundCall>IM_Pawn_Berserker_Call</soundCall>
+        </li>
+      </lifeStageAges>
+      <soundMeleeHitPawn>Pawn_Melee_MechanoidBash_HitPawn</soundMeleeHitPawn>
+      <soundMeleeHitBuilding>Pawn_Melee_MechanoidBash_HitBuilding</soundMeleeHitBuilding>
+      <soundMeleeMiss>Pawn_Melee_MechanoidBash_Miss</soundMeleeMiss>
+      <detritusLeavings>
+        <li>
+          <def>ChunkMechanoidSlag</def>
+          <texOverrideIndex>0</texOverrideIndex>
+          <spawnChance>0.5</spawnChance>
+        </li>
+        <li>
+          <def>ChunkMechanoidSlag</def>
+          <texOverrideIndex>3</texOverrideIndex>
+          <spawnChance>0.5</spawnChance>
+        </li>
+        <li>
+          <def>ChunkMechanoidSlag</def>
+          <texOverrideIndex>1</texOverrideIndex>
+          <spawnChance>0.5</spawnChance>
+        </li>
+      </detritusLeavings>
+		</race>
+		<butcherProducts>
+		  <Steel>20</Steel>
+      <Plasteel>10</Plasteel>
+		</butcherProducts>
+  </ThingDef>
+
+  <PawnKindDef ParentName="BaseMechanoidKind">
+    <defName>IM_Mech_Berserker</defName>
+    <label>berserker</label>
+    <race>IM_Mech_Berserker</race>
+    <combatPower>230</combatPower>
+    <lifeStages>
+	    <li MayRequire="Ludeon.RimWorld.Biotech">
+        <bodyGraphicData>
+          <texPath>Things/Pawn/Mechanoid/Berserker/BerserkerClean</texPath>
+          <maskPath>Things/Pawn/Mechanoid/AllegianceOverlays/Mech_Berserker</maskPath>
+          <shaderType>CutoutWithOverlay</shaderType>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>2.5</drawSize>
+          <shadowData>
+            <volume>(0.6, 0.8, 0.6)</volume>
+          </shadowData>
+        </bodyGraphicData>
+      </li>
+      <li>
+        <bodyGraphicData>
+          <texPath>Things/Pawn/Mechanoid/Berserker/Berserker</texPath>
+          <maskPath>Things/Pawn/Mechanoid/AllegianceOverlays/Mech_Berserker</maskPath>
+          <shaderType>CutoutWithOverlay</shaderType>
+          <graphicClass>Graphic_Multi</graphicClass>
+          <drawSize>2.5</drawSize>
+          <shadowData>
+            <volume>(0.6, 0.8, 0.6)</volume>
+          </shadowData>
+        </bodyGraphicData>
+      </li>
+    </lifeStages>
+    <techHediffsChance MayRequire="Ludeon.RimWorld.Biotech">1</techHediffsChance>
+    <techHediffsMoney>9999~9999</techHediffsMoney>
+    <weaponMoney>0~0</weaponMoney>
+    <controlGroupPortraitZoom>0.9</controlGroupPortraitZoom>
+    <defendPointRadius>0</defendPointRadius>
+    <weaponTags>
+    </weaponTags>
+    <startingHediffs>
+      <li>
+        <def>IM_RageDrive</def>
+        <severity>0.001</severity>
+      </li>
+    </startingHediffs>
+    <modExtensions>
+      <li Class="EBSGFramework.ForceStartingHediffsExtension" />
+    </modExtensions>
+  </PawnKindDef>
+
+</Defs>
