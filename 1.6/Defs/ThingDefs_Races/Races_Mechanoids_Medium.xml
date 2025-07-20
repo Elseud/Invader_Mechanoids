@@ -454,7 +454,7 @@
   <ThingDef ParentName="BaseMechanoidWalker">
     <defName>IM_Mech_Constrictor</defName>
     <label>constrictor</label>
-    <description>todo</description>
+    <description>A combat mechanoid vaguely resembling a cross between human and snake. The constrictor is designed to pick off priority targets on the field of battle, pulling them from behind cover with its grappling “tongue”, before crushing them with its powerful tail. Exceedingly effective against organics thanks to their hardware and toxic weaponry, constrictors are favoured by rogue mechives as a means of crushing human resistance.</description>
     <uiIconScale>1.2</uiIconScale>
     <statBases>
       <BandwidthCost MayRequire="Ludeon.RimWorld.Biotech">3</BandwidthCost>

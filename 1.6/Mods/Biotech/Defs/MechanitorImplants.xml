@@ -54,18 +54,15 @@
         <abilitiesAtSeverities>
           <li>
             <abilityDef>IM_SystemInterlink_1</abilityDef>
-            <minSeverity>0.1</minSeverity>
-            <maxSeverity>1</maxSeverity> 
+            <validSeverity>0.1~1</validSeverity>
           </li>
           <li>
             <abilityDef>IM_SystemInterlink_2</abilityDef>
-            <minSeverity>1.1</minSeverity>
-            <maxSeverity>2</maxSeverity>
+            <validSeverity>1.1~2</validSeverity>
           </li>
           <li>
             <abilityDef>IM_SystemInterlink_3</abilityDef>
-            <minSeverity>2.1</minSeverity>
-            <maxSeverity>3</maxSeverity>
+            <validSeverity>2.1~3</validSeverity>
           </li>
         </abilitiesAtSeverities>
       </li>

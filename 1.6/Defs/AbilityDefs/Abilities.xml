@@ -570,7 +570,7 @@
   <AbilityDef>
     <defName>IM_GrapplePull</defName>
     <label>grapple pull</label>
-    <description>todo</description>
+    <description>Launch a grapple line at a target to stun and pull them into melee range. The chances of a successful grapple depend on the caster's shooting accuracy and the target's melee dodge chance. The target cannot exceed 1.5 body size.</description>
     <iconPath>UI/Abilities/GrapplePull</iconPath>
     <displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
     <disableGizmoWhileUndrafted>true</disableGizmoWhileUndrafted>
@@ -605,7 +605,6 @@
     <comps>
       <li Class="EBSGFramework.CompProperties_CreateLinkedHediff">
         <hediffOnTarget>IM_GrappleLine</hediffOnTarget>
-        <hediffOnCaster>IM_GrappllingImmobilization</hediffOnCaster> <!-- added so AI vipers do not wander off after pulling in a target -->
       </li>
       <li Class="EBSGFramework.CompProperties_AbilityPushTarget">
         <range>22</range>
@@ -622,32 +621,6 @@
       </li>
     </comps>
   </AbilityDef>
-
-  <HediffDef>
-    <hediffClass>HediffWithTarget</hediffClass>
-    <defName>IM_GrappllingImmobilization</defName>
-    <label>grappling immobilization</label>
-    <description>You shouldn't be able to read this outside devmode.</description>
-    <isBad>false</isBad>
-    <scenarioCanAdd>false</scenarioCanAdd>
-    <everCurableByItem>false</everCurableByItem>
-    <initialSeverity>1</initialSeverity>
-    <maxSeverity>1</maxSeverity>
-    <comps>
-      <li Class="HediffCompProperties_Disappears">
-        <disappearsAfterTicks>120</disappearsAfterTicks>
-      </li>
-      <li Class="HediffCompProperties_DisappearsOnDeath"/>
-    </comps>
-    <stages>
-      <li>
-        <becomeVisible>false</becomeVisible>
-        <statOffsets>
-          <MoveSpeed>-4.69</MoveSpeed>
-        </statOffsets>
-      </li>
-    </stages>
-  </HediffDef>
 
   <HediffDef>
     <hediffClass>HediffWithTarget</hediffClass>
@@ -721,7 +694,7 @@
   <AbilityDef ParentName="AbilityTouchBase">
     <defName>IM_CrushingBind</defName>
     <label>crushing bind</label>
-    <description>todo</description>
+    <description>Wrap around the target with a powerful synth-muscle tail in an attempt to crush them. The victim remains stunned for the duration of the ability, receiving 5 crushing damage to their torso every second for up to 8 seconds. Receiving any damage during the cast will interrupt it and put it on cooldown. Sufficiently skilled melee combatants will know how to anticipate and avoid the grab, making them impossible to bind. The target cannot exceed 1.5 body size.</description>
     <iconPath>UI/Abilities/CrushingBind</iconPath>
     <stunTargetWhileCasting>true</stunTargetWhileCasting>
     <displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
@@ -771,7 +744,7 @@
         <disableGizmo>False</disableGizmo>
         <hideGizmo>False</hideGizmo>
         <noMessage>True</noMessage>
-        <maxBodySize>1.5</maxBodySize>
+        <bodySize>0~1.5</bodySize>
         <targetSkillLimiters>
           <li>
             <skill>Melee</skill>

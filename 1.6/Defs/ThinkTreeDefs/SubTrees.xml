@@ -19,9 +19,6 @@
                   <subNodes>
                     
                     <!--== General Ability AI ==-->
-                    <li Class="ThinkNode_ConditionalHashIntervalTick">
-                      <interval>45</interval>
-                      <subNodes>
 
                         <!-- Quickjet Jump -->
                         <li Class="ThinkNode_ConditionalHasAbility">
@@ -176,9 +173,6 @@
                             </li>
                           </subNodes>
                         </li>
-
-                      </subNodes>
-                    </li>
 
                     <!--== Unmasked Infiltrator ==-->
                     <li Class="ThinkNode_ConditionalHasHediff">

@@ -353,7 +353,7 @@
   <ThingDef ParentName="BaseGun">
     <defName>IM_Gun_StingerRifle</defName>
     <label>stinger rifle</label>
-    <description>todo</description>
+    <description>A mechanoid rifle that burst-fires toxin-infused needle-like projectiles. Its reliability at all ranges and toxic payload make it terrifyingly effective against organic targets.</description>
     <techLevel>Spacer</techLevel>
     <graphicData>
       <texPath>Things/Item/Equipment/WeaponRanged/StingerRifle</texPath>
