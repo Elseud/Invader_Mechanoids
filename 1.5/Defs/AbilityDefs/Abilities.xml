@@ -288,7 +288,7 @@
         <canTargetAnimals>false</canTargetAnimals>
         <canTargetHumans>false</canTargetHumans>
         <canTargetMechs>true</canTargetMechs>
-        <canTargetMutants>false</canTargetMutants>
+        <canTargetSubhumans>false</canTargetSubhumans>
         <neverTargetIncapacitated>true</neverTargetIncapacitated>
       </targetParams>
     </verbProperties>
