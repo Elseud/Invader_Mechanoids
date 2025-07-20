@@ -619,6 +619,9 @@
           <targetStatEffect>OneMinusMultiply</targetStatEffect>
         </successChance>
       </li>
+      <li Class = "CompProperties_AbilityEffectWithDuration">
+        <compClass>CompAbilityEffect_Stun</compClass>
+      </li>
     </comps>
   </AbilityDef>
 

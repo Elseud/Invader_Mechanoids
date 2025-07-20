@@ -40,10 +40,6 @@
                         <li Class="ThinkNode_ConditionalHasAbility">
                           <ability>IM_SystemMerge</ability>
                           <subNodes>
-                            <li Class="ThinkNode_ConditionalAbilityCastLastTick">
-                              <ability>IM_SystemMerge</ability>
-                              <minTicksAgo>300</minTicksAgo>
-                              <subNodes>
                                 <li Class="EBSGFramework.ThinkNode_ConditionalTooManyNearbyThreats">
                                   <dangerRadius>40</dangerRadius>
                                   <minCount>1</minCount>
@@ -60,8 +56,6 @@
                                     </li>
                                   </subNodes>
                                 </li>
-                              </subNodes>
-                            </li>
                           </subNodes>
                         </li>
 
@@ -69,10 +63,6 @@
                         <li Class="ThinkNode_ConditionalHasAbility">
                           <ability>IM_GrapplePull</ability>
                           <subNodes>
-                            <li Class="ThinkNode_ConditionalAbilityCastLastTick">
-                              <ability>IM_GrapplePull</ability>
-                              <minTicksAgo>180</minTicksAgo>
-                              <subNodes>
                                 <li Class="EBSGFramework.ThinkNode_ConditionalTooManyNearbyThreats">
                                   <dangerRadius>21</dangerRadius>
                                   <minCount>1</minCount>
@@ -91,8 +81,6 @@
                                     </li>
                                   </subNodes>
                                 </li>
-                              </subNodes>
-                            </li>
                           </subNodes>
                         </li>
                         
@@ -100,10 +88,6 @@
                         <li Class="ThinkNode_ConditionalHasAbility">
                           <ability>IM_CrushingBind</ability>
                           <subNodes>
-                            <li Class="ThinkNode_ConditionalAbilityCastLastTick">
-                              <ability>IM_CrushingBind</ability>
-                              <minTicksAgo>180</minTicksAgo>
-                              <subNodes>
                                 <li Class="EBSGFramework.ThinkNode_ConditionalTooManyNearbyThreats">
                                   <dangerRadius>3</dangerRadius>
                                   <minCount>1</minCount>
@@ -122,8 +106,6 @@
                                     </li>
                                   </subNodes>
                                 </li>
-                              </subNodes>
-                            </li>
                           </subNodes>
                         </li>
 
@@ -135,10 +117,6 @@
                             <li Class="ThinkNode_ConditionalHasAbility">
                               <ability>IM_Conceal</ability>
                               <subNodes>
-                                <li Class="ThinkNode_ConditionalAbilityCastLastTick">
-                                  <ability>IM_Conceal</ability>
-                                  <minTicksAgo>240</minTicksAgo>
-                                  <subNodes>
                                     <li Class="EBSGFramework.ThinkNode_ConditionalTooManyNearbyThreats">
                                       <dangerRadius>13</dangerRadius>
                                       <minCount>3</minCount>
@@ -148,8 +126,6 @@
                                         </li>
                                       </subNodes>
                                     </li>
-                                  </subNodes>
-                                </li>
                               </subNodes>
                             </li>
                             <!-- Reposition when invisible -->
@@ -210,10 +186,6 @@
                             <li Class="ThinkNode_ConditionalHasAbility">
                               <ability>IM_Conceal</ability>
                               <subNodes>
-                                <li Class="ThinkNode_ConditionalAbilityCastLastTick">
-                                  <ability>IM_Conceal</ability>
-                                  <minTicksAgo>240</minTicksAgo>
-                                  <subNodes>
                                     <li Class="EBSGFramework.ThinkNode_ConditionalTooManyNearbyThreats">
                                       <dangerRadius>13</dangerRadius>
                                       <minCount>3</minCount>
@@ -223,8 +195,6 @@
                                         </li>
                                       </subNodes>
                                     </li>
-                                  </subNodes>
-                                </li>
                               </subNodes>
                             </li>
                             <li Class="JobGiver_AIFightEnemies">
@@ -297,10 +267,6 @@
                         <li Class="ThinkNode_ConditionalHasAbility">
                           <ability>IM_SystemMerge</ability>
                           <subNodes>
-                            <li Class="ThinkNode_ConditionalAbilityCastLastTick">
-                              <ability>IM_SystemMerge</ability>
-                              <minTicksAgo>300</minTicksAgo>
-                              <subNodes>
                                 <li Class="EBSGFramework.ThinkNode_ConditionalTooManyNearbyThreats">
                                   <dangerRadius>40</dangerRadius>
                                   <minCount>1</minCount>
@@ -317,8 +283,6 @@
                                     </li>
                                   </subNodes>
                                 </li>
-                              </subNodes>
-                            </li>
                           </subNodes>
                         </li>
                       </subNodes>
