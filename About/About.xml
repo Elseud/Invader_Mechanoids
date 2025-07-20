@@ -4,6 +4,7 @@
 	<author>Elseud, Alite</author>
 	<supportedVersions>
 	<li>1.5</li>
+	<li>1.6</li>
     </supportedVersions>
     <packageId>EL.InvMech</packageId>
     <description>Adds new combat mechanoids inspired by many of the aliens from the XCOM game series. Each mech comes with an unique mechanic, from ai-usable buffing abilities to toxins hijacking the host body to create more mechanoids.</description>

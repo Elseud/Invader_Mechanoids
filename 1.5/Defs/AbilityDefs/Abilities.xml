@@ -89,13 +89,14 @@
   <AbilityDef>
     <defName>IM_QuickjetJump</defName>
     <label>quickjet jump</label>
-    <description>Instantly jump to a distant location with a burst from a built-in jet engine.</description>
+    <description>Instantly jump to a distant location with a burst from a built-in jet engine.\n\nPress right-click to toggle the ability's autocast on/off.</description>
     <iconPath>UI/Abilities/QuickjetJump</iconPath>
     <displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
     <disableGizmoWhileUndrafted>false</disableGizmoWhileUndrafted>
     <cooldownTicksRange>360</cooldownTicksRange>
     <hostile>false</hostile>
     <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+    <gizmoClass>EBSGFramework.Command_AbilityAutocastToggle</gizmoClass>
     <verbProperties>
       <verbClass>Verb_CastAbilityJump</verbClass>
       <label>quickjet jump</label>
@@ -116,6 +117,9 @@
       </targetParams>
     </verbProperties>
     <jobDef>CastJump</jobDef>
+    <comps>
+      <li Class="EBSGFramework.CompProperties_AbilityAutocastToggle" />
+    </comps>
   </AbilityDef>
 
   <!--======= SystemMerge =======-->
@@ -259,7 +263,7 @@
   <AbilityDef>
     <defName>IM_SystemMerge</defName>
     <label>system merge</label>
-    <description>Connect and merge systems with another mechanoid, boosting its data processing and mobility, while reducing incoming damage by acting as backup for critical subsystems. Should the connection end prematurely by broadcaster's death, the receiver will suffer from severe system disruption.</description>
+    <description>Connect and merge systems with another mechanoid, boosting its data processing and mobility, while reducing incoming damage by acting as backup for critical subsystems. Should the connection end prematurely by broadcaster's death, the receiver will suffer from severe system disruption.\n\nPress right-click to toggle the ability's autocast on/off.</description>
     <iconPath>UI/Abilities/SystemMerge</iconPath>
     <stunTargetWhileCasting>false</stunTargetWhileCasting>
 	  <displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
@@ -271,6 +275,7 @@
     </statBases>
     <cooldownTicksRange>60000</cooldownTicksRange>
 	  <targetRequired>true</targetRequired>
+    <gizmoClass>EBSGFramework.Command_AbilityAutocastToggle</gizmoClass>
     <verbProperties>
       <verbClass>Verb_CastAbility</verbClass>
       <label>system merge</label>
@@ -293,6 +298,7 @@
       </targetParams>
     </verbProperties>
     <comps>
+      <li Class="EBSGFramework.CompProperties_AbilityAutocastToggle" />
       <li Class="EBSGFramework.CompProperties_AbilityAbilityValidator">
         <disableGizmo>False</disableGizmo>
         <hideGizmo>False</hideGizmo>
@@ -406,7 +412,375 @@
     </stages>
   </HediffDef>
 
-  <!--======= Autocasts =======-->
+  <!--======= Conceal =======-->
+
+  <!-- VFX -->
+  <ThingDef ParentName="MoteBase">
+    <defName>IM_ConcealGlow</defName>
+    <thingClass>MoteAttached</thingClass>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <mote>
+      <fadeInTime>2.5</fadeInTime>
+      <solidTime>0.005</solidTime>
+      <fadeOutTime>0.1</fadeOutTime>
+    </mote>
+    <graphicData>
+      <graphicClass>Graphic_PawnBodySilhouette</graphicClass>
+      <color>(171, 235, 255, 155)</color>
+      <shaderType>MoteGlowDistorted</shaderType>
+      <texPath>Things/Mote/PsycastDistortionMask</texPath>
+      <shaderParameters>
+        <_DistortionTex>/Other/Ripples</_DistortionTex>
+        <_distortionIntensity>0.05</_distortionIntensity>
+        <_DistortionScale>0.7</_DistortionScale>
+        <_distortionScrollSpeed>(0.07, 0.07, 0.0)</_distortionScrollSpeed>
+      </shaderParameters>
+    </graphicData>
+  </ThingDef>
+
+  <EffecterDef>
+    <defName>IM_Conceal</defName>
+    <children>
+      <li>
+        <subEffecterClass>SubEffecter_SoundTriggered</subEffecterClass>
+        <soundDef>IM_Conceal</soundDef>
+      </li>
+      <li>
+        <subEffecterClass>SubEffecter_SprayerTriggered</subEffecterClass>
+        <moteDef>IM_ConcealGlow</moteDef>
+        <burstCount>1</burstCount>
+        <spawnLocType>OnSource</spawnLocType>
+        <attachToSpawnThing>true</attachToSpawnThing>
+      </li>
+    </children>
+  </EffecterDef>
+  
+  <!-- Ability -->
+  <AbilityDef>
+    <defName>IM_Conceal</defName>
+    <label>conceal</label>
+    <description>Activate a built-in optical cloak, turning invisible for a short time.</description>
+    <iconPath>UI/Abilities/Conceal</iconPath>
+    <jobDef>CastAbilityOnThing</jobDef>
+    <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
+    <displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
+    <disableGizmoWhileUndrafted>false</disableGizmoWhileUndrafted>
+    <stunTargetWhileCasting>false</stunTargetWhileCasting>
+    <cooldownTicksRange>300000</cooldownTicksRange>
+    <targetRequired>false</targetRequired>
+    <hostile>false</hostile>
+    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+    <statBases>
+      <Ability_Duration>12</Ability_Duration>
+    </statBases>
+    <verbProperties>
+      <verbClass>Verb_CastAbility</verbClass>
+      <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+      <nonInterruptingSelfCast>true</nonInterruptingSelfCast>
+      <warmupEffecter>IM_Conceal</warmupEffecter>
+      <warmupTime>2.65</warmupTime>
+      <range>-1</range>
+      <drawAimPie>false</drawAimPie>    
+      <requireLineOfSight>False</requireLineOfSight>
+      <targetParams>
+        <canTargetSelf>true</canTargetSelf>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="CompProperties_AbilityGiveHediff">
+        <compClass>CompAbilityEffect_GiveHediff</compClass>
+        <hediffDef>IM_Concealed</hediffDef>
+      </li>
+    </comps>
+  </AbilityDef>
+
+  <HediffDef>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defName>IM_Concealed</defName>
+    <label>concealed</label>
+    <description>An active optical cloak, rendering this mechanoid invisible for the duration.</description>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <initialSeverity>1</initialSeverity>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>720</disappearsAfterTicks>
+        <showRemainingTime>true</showRemainingTime>
+      </li>
+      <li Class="HediffCompProperties_DisappearsOnDeath" />
+      <li Class="HediffCompProperties_Invisibility">
+        <visibleToPlayer>false</visibleToPlayer>
+        <fadeDurationTicks>60</fadeDurationTicks>
+        <recoverFromDisruptedTicks>90</recoverFromDisruptedTicks>
+      </li>
+    </comps>
+  </HediffDef>
+
+  <!--======= Grapple Pull =======-->
+
+  <!-- VFX -->
+  <ThingDef ParentName="MoteBase">
+    <defName>IM_GrappleLine</defName>
+    <thingClass>MoteDualAttached</thingClass>
+    <altitudeLayer>MoteLow</altitudeLayer>
+    <mote>
+      <fadeInTime>0.1</fadeInTime>
+      <fadeOutTime>0.1</fadeOutTime>
+      <solidTime>999999</solidTime>
+      <needsMaintenance>True</needsMaintenance>
+      <rotateTowardsTarget>True</rotateTowardsTarget>
+      <scaleToConnectTargets>True</scaleToConnectTargets>
+    </mote>
+    <graphicData>
+      <shaderType>Mote</shaderType>
+      <texPath>Things/Mote/GrappleLine</texPath>
+    </graphicData>
+  </ThingDef>
+
+  <ThingDef ParentName="MoteBase">
+    <defName>IM_GrappleTangle</defName>
+    <thingClass>MoteAttached</thingClass>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <mote>
+      <fadeInTime>0</fadeInTime>
+      <fadeOutTime>0.1</fadeOutTime>
+      <solidTime>999999</solidTime>
+      <needsMaintenance>true</needsMaintenance>
+    </mote>
+    <graphicData>
+      <graphicClass>Graphic_Mote</graphicClass>
+      <shaderType>Mote</shaderType>
+      <texPath>Things/Mote/GrappleTangle</texPath>
+      <drawSize>(1.1, 1.1)</drawSize>
+    </graphicData>
+  </ThingDef>
+
+  <EffecterDef>
+    <defName>IM_GrappleTangle</defName>
+    <children>
+      <li>
+        <subEffecterClass>SubEffecter_SprayerTriggered</subEffecterClass>
+        <moteDef>IM_GrappleTangle</moteDef>
+        <burstCount>1</burstCount>
+        <spawnLocType>OnTarget</spawnLocType>
+        <attachToSpawnThing>true</attachToSpawnThing>
+        <absoluteAngle>True</absoluteAngle>
+        <rotationRate>0</rotationRate>
+        <rotation>0</rotation>
+      </li>
+    </children>
+  </EffecterDef>
+
+  <!-- Ability -->
+  <AbilityDef>
+    <defName>IM_GrapplePull</defName>
+    <label>grapple pull</label>
+    <description>Launch a grapple line at a target to stun and pull them into melee range. The chances of a successful grapple depend on the caster's shooting accuracy and the target's melee dodge chance. The target cannot exceed 1.5 body size.</description>
+    <iconPath>UI/Abilities/GrapplePull</iconPath>
+    <displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
+    <disableGizmoWhileUndrafted>true</disableGizmoWhileUndrafted>
+    <hostile>false</hostile>
+    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+    <waitForJobEnd>true</waitForJobEnd>
+    <statBases>
+      <Ability_Duration>2</Ability_Duration>
+    </statBases>
+    <cooldownTicksRange>30000</cooldownTicksRange>
+	  <targetRequired>true</targetRequired>
+    <verbProperties>
+      <verbClass>Verb_CastAbility</verbClass>
+      <range>21.9</range>
+      <minRange>4.9</minRange>
+      <defaultCooldownTime>2.5</defaultCooldownTime>
+      <warmupTime>1.2</warmupTime>
+      <requireLineOfSight>true</requireLineOfSight>
+      <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
+      <soundCast>IM_GrappleCast</soundCast>
+      <targetParams>
+        <canTargetPawns>true</canTargetPawns>
+        <canTargetSelf>false</canTargetSelf>
+        <canTargetBuildings>false</canTargetBuildings>
+        <canTargetCorpses>false</canTargetCorpses>
+        <canTargetAnimals>true</canTargetAnimals>
+        <canTargetHumans>true</canTargetHumans>
+        <canTargetMechs>true</canTargetMechs>
+        <canTargetSubhumans>true</canTargetSubhumans>
+        <neverTargetIncapacitated>false</neverTargetIncapacitated>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="EBSGFramework.CompProperties_CreateLinkedHediff">
+        <hediffOnTarget>IM_GrappleLine</hediffOnTarget>
+      </li>
+      <li Class="EBSGFramework.CompProperties_AbilityPushTarget">
+        <range>22</range>
+        <soundLanding>IM_GrappleReel</soundLanding>
+        <flyWithCarriedThing>false</flyWithCarriedThing>
+        <destination>Caster</destination>
+        <maxBodySize>1.5</maxBodySize>
+        <successChance>
+          <baseSuccessChance>0.85</baseSuccessChance>
+          <casterStatChance>ShootingAccuracyPawn</casterStatChance>
+          <targetStatChance>MeleeDodgeChance</targetStatChance>
+          <targetStatEffect>OneMinusMultiply</targetStatEffect>
+        </successChance>
+      </li>
+      <li Class = "CompProperties_AbilityEffectWithDuration">
+        <compClass>CompAbilityEffect_Stun</compClass>
+      </li>
+    </comps>
+  </AbilityDef>
+
+  <HediffDef>
+    <hediffClass>HediffWithTarget</hediffClass>
+    <defName>IM_GrappleLine</defName>
+    <label>grapple line</label>
+    <description>You shouldn't be able to read this outside devmode.</description>
+    <isBad>false</isBad>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <everCurableByItem>false</everCurableByItem>
+    <initialSeverity>1</initialSeverity>
+    <maxSeverity>1</maxSeverity>
+    <comps>
+      <li Class="HediffCompProperties_Effecter">
+        <stateEffecter>IM_GrappleTangle</stateEffecter>
+      </li>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>120</disappearsAfterTicks>
+      </li>
+      <li Class="HediffCompProperties_DisappearsOnDeath"/>
+      <li Class="HediffCompProperties_Link">
+        <requireLinkOnOtherPawn>false</requireLinkOnOtherPawn>
+        <maxDistance>24</maxDistance>
+        <customMote>IM_GrappleLine</customMote>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <becomeVisible>false</becomeVisible>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <!--======= Crushing Bind =======-->
+
+  <!-- VFX -->
+  <ThingDef ParentName="MoteBase">
+    <defName>IM_ConstrictBind</defName>
+    <thingClass>MoteAttached</thingClass>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <mote>
+      <fadeInTime>0.1</fadeInTime>
+      <fadeOutTime>0.1</fadeOutTime>
+      <solidTime>999999</solidTime>
+      <needsMaintenance>true</needsMaintenance>
+    </mote>
+    <graphicData>
+      <graphicClass>Graphic_Mote</graphicClass>
+      <shaderType>Mote</shaderType>
+      <texPath>Things/Mote/ConstrictBind</texPath>
+      <drawSize>(1, 1)</drawSize>
+    </graphicData>
+  </ThingDef>
+
+  <EffecterDef>
+    <defName>IM_ConstrictBind</defName>
+    <children>
+      <li>
+        <subEffecterClass>SubEffecter_SprayerTriggered</subEffecterClass>
+        <moteDef>IM_ConstrictBind</moteDef>
+        <burstCount>1</burstCount>
+        <spawnLocType>OnTarget</spawnLocType>
+        <attachToSpawnThing>true</attachToSpawnThing>
+        <absoluteAngle>True</absoluteAngle>
+        <rotationRate>0</rotationRate>
+        <rotation>0</rotation>
+      </li>
+    </children>
+  </EffecterDef>
+
+  <!-- Ability -->
+  <AbilityDef ParentName="AbilityTouchBase">
+    <defName>IM_CrushingBind</defName>
+    <label>crushing bind</label>
+    <description>Wrap around the target with a powerful synth-muscle tail in an attempt to crush them. The victim remains stunned for the duration of the ability, receiving 5 crushing damage to their torso every second for up to 8 seconds. Receiving any damage during the cast will interrupt it and put it on cooldown. Sufficiently skilled melee combatants will know how to anticipate and avoid the grab, making them impossible to bind. The target cannot exceed 1.5 body size.\n\nPress right-click to toggle the ability's autocast on/off.</description>
+    <iconPath>UI/Abilities/CrushingBind</iconPath>
+    <stunTargetWhileCasting>true</stunTargetWhileCasting>
+    <displayGizmoWhileUndrafted>false</displayGizmoWhileUndrafted>
+    <disableGizmoWhileUndrafted>true</disableGizmoWhileUndrafted>
+    <warmupSound>IM_ConstrictChoke</warmupSound>
+    <warmupEffecter>IM_ConstrictBind</warmupEffecter>
+    <jobDef>CastAbilityOnThingMelee</jobDef>
+    <hostile>true</hostile>
+    <casterMustBeCapableOfViolence>true</casterMustBeCapableOfViolence>
+    <writeCombatLog>true</writeCombatLog>
+    <cooldownTicksRange>60000</cooldownTicksRange>
+    <gizmoClass>EBSGFramework.Command_AbilityAutocastToggle</gizmoClass>
+    <verbProperties>
+      <verbClass>Verb_CastAbilityTouch</verbClass>
+      <drawAimPie>false</drawAimPie>
+      <range>1.9</range>
+      <warmupTime>8</warmupTime>
+      <targetParams>
+        <canTargetPawns>true</canTargetPawns>
+        <canTargetSelf>false</canTargetSelf>
+        <canTargetBuildings>false</canTargetBuildings>
+        <canTargetCorpses>false</canTargetCorpses>
+        <canTargetAnimals>true</canTargetAnimals>
+        <canTargetHumans>true</canTargetHumans>
+        <canTargetMechs>true</canTargetMechs>
+        <canTargetSubhumans>true</canTargetSubhumans>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="EBSGFramework.CompProperties_AbilityAutocastToggle" />
+      <li Class="EBSGFramework.CompProperties_AbilityInterruptOnDamaged" />
+      <li Class="EBSGFramework.CompProperties_AbilityDamageOverTime">
+        <damage>IM_ConstrictCrush</damage>
+        <damageAmount>5</damageAmount>
+        <armorPenetration>0.2</armorPenetration>
+        <initialTick>60</initialTick>
+        <createFilth>false</createFilth>
+        <bodyParts>
+          <li>Torso</li>
+          <li>Shell</li>
+          <li>Body</li>
+          <li>MechanicalThorax</li>
+          <li>MechanicalThoraxCanManipulate</li>
+          <li>IM_ReinforcedMechanicalThorax</li>
+          <li>IM_HoverThorax</li>
+        </bodyParts>
+      </li>
+      <li Class="EBSGFramework.CompProperties_AbilityAbilityValidator">
+        <disableGizmo>False</disableGizmo>
+        <hideGizmo>False</hideGizmo>
+        <noMessage>True</noMessage>
+        <bodySize>0~1.5</bodySize>
+        <targetSkillLimiters>
+          <li>
+            <skill>Melee</skill>
+            <maxLevel>15</maxLevel>
+          </li>
+        </targetSkillLimiters>
+      </li>
+    </comps>
+  </AbilityDef>
+
+  <DamageDef ParentName="BluntBase">
+    <defName>IM_ConstrictCrush</defName>
+    <label>crush</label>
+    <hediff>Crush</hediff>
+    <hediffSkin>Bruise</hediffSkin>
+    <hediffSolid>Crack</hediffSolid>
+    <harmAllLayersUntilOutside>true</harmAllLayersUntilOutside>
+    <impactSoundType>Blunt</impactSoundType>
+    <armorCategory>Blunt</armorCategory>
+    <overkillPctToDestroyPart>0.4~1.0</overkillPctToDestroyPart>
+    <defaultArmorPenetration>0.5</defaultArmorPenetration>
+  </DamageDef>
+
+  <!--======= Autocasts (OBSOLETE, left to avoid fucking over saves) =======-->
   
   <!-- Quickjet -->
   <HediffDef>
@@ -418,56 +792,12 @@
     <everCurableByItem>false</everCurableByItem>
     <scenarioCanAdd>false</scenarioCanAdd>
     <initialSeverity>1</initialSeverity>
-    <comps>
-      <li Class="HediffCompProperties_GiveAbility">
-        <abilityDef>IM_AutocastQuickjet_On</abilityDef>
-      </li>
-    </comps>
     <stages>
       <li>
         <becomeVisible>false</becomeVisible>
       </li>
     </stages>
   </HediffDef>
-
-  <AbilityDef>
-    <defName>IM_AutocastQuickjet_On</defName>
-    <label>toggle autocast on</label>
-    <description>Enables quickjet jump's autocast.</description>
-    <iconPath>UI/Abilities/QuickjetJump_AutoOn</iconPath>
-    <jobDef>CastAbilityOnThing</jobDef>
-    <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
-    <displayGizmoWhileUndrafted>true</displayGizmoWhileUndrafted>
-    <disableGizmoWhileUndrafted>false</disableGizmoWhileUndrafted>
-    <stunTargetWhileCasting>false</stunTargetWhileCasting>
-    <cooldownTicksRange>60</cooldownTicksRange>
-    <targetRequired>false</targetRequired>
-    <hostile>false</hostile>
-    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
-    <verbProperties>
-      <verbClass>Verb_CastAbility</verbClass>
-      <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
-      <nonInterruptingSelfCast>true</nonInterruptingSelfCast>
-      <warmupTime>0</warmupTime>
-      <range>-1</range>
-      <drawAimPie>false</drawAimPie>    
-      <requireLineOfSight>False</requireLineOfSight>
-      <targetParams>
-        <canTargetSelf>true</canTargetSelf>
-      </targetParams>
-    </verbProperties>
-    <comps>
-      <li Class="CompProperties_AbilityGiveHediff">
-        <compClass>CompAbilityEffect_GiveHediff</compClass>
-        <hediffDef>IM_AutocastQuickjet_On</hediffDef>
-      </li>
-      <li Class="CompProperties_AbilityRemoveHediff">
-        <compClass>CompAbilityEffect_RemoveHediff</compClass>
-        <applyToSelf>true</applyToSelf>
-        <hediffDef>IM_AutocastQuickjet_Off</hediffDef>
-      </li>
-    </comps>
-  </AbilityDef>
 
   <HediffDef>
     <hediffClass>HediffWithComps</hediffClass>
@@ -478,56 +808,12 @@
     <everCurableByItem>false</everCurableByItem>
     <scenarioCanAdd>false</scenarioCanAdd>
     <initialSeverity>1</initialSeverity>
-    <comps>
-      <li Class="HediffCompProperties_GiveAbility">
-        <abilityDef>IM_AutocastQuickjet_Off</abilityDef>
-      </li>
-    </comps>
     <stages>
       <li>
         <becomeVisible>false</becomeVisible>
       </li>
     </stages>
   </HediffDef>
-
-  <AbilityDef>
-    <defName>IM_AutocastQuickjet_Off</defName>
-    <label>toggle autocast off</label>
-    <description>Disables quickjet jump's autocast.</description>
-    <iconPath>UI/Abilities/QuickjetJump_AutoOff</iconPath>
-    <jobDef>CastAbilityOnThing</jobDef>
-    <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
-    <displayGizmoWhileUndrafted>true</displayGizmoWhileUndrafted>
-    <disableGizmoWhileUndrafted>false</disableGizmoWhileUndrafted>
-    <stunTargetWhileCasting>false</stunTargetWhileCasting>
-    <cooldownTicksRange>60</cooldownTicksRange>
-    <targetRequired>false</targetRequired>
-    <hostile>false</hostile>
-    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
-    <verbProperties>
-      <verbClass>Verb_CastAbility</verbClass>
-      <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
-      <nonInterruptingSelfCast>true</nonInterruptingSelfCast>
-      <warmupTime>0</warmupTime>
-      <range>-1</range>
-      <drawAimPie>false</drawAimPie>    
-      <requireLineOfSight>False</requireLineOfSight>
-      <targetParams>
-        <canTargetSelf>true</canTargetSelf>
-      </targetParams>
-    </verbProperties>
-    <comps>
-      <li Class="CompProperties_AbilityGiveHediff">
-        <compClass>CompAbilityEffect_GiveHediff</compClass>
-        <hediffDef>IM_AutocastQuickjet_Off</hediffDef>
-      </li>
-      <li Class="CompProperties_AbilityRemoveHediff">
-        <compClass>CompAbilityEffect_RemoveHediff</compClass>
-        <applyToSelf>true</applyToSelf>
-        <hediffDef>IM_AutocastQuickjet_On</hediffDef>
-      </li>
-    </comps>
-  </AbilityDef>
 
   <!-- System Merge -->
   <HediffDef>
@@ -539,56 +825,12 @@
     <everCurableByItem>false</everCurableByItem>
     <scenarioCanAdd>false</scenarioCanAdd>
     <initialSeverity>1</initialSeverity>
-    <comps>
-      <li Class="HediffCompProperties_GiveAbility">
-        <abilityDef>IM_AutocastSystemMerge_On</abilityDef>
-      </li>
-    </comps>
     <stages>
       <li>
         <becomeVisible>false</becomeVisible>
       </li>
     </stages>
   </HediffDef>
-
-  <AbilityDef>
-    <defName>IM_AutocastSystemMerge_On</defName>
-    <label>toggle autocast on</label>
-    <description>Enables system merge's autocast.</description>
-    <iconPath>UI/Abilities/SystemMerge_AutoOn</iconPath>
-    <jobDef>CastAbilityOnThing</jobDef>
-    <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
-    <displayGizmoWhileUndrafted>true</displayGizmoWhileUndrafted>
-    <disableGizmoWhileUndrafted>false</disableGizmoWhileUndrafted>
-    <stunTargetWhileCasting>false</stunTargetWhileCasting>
-    <cooldownTicksRange>60</cooldownTicksRange>
-    <targetRequired>false</targetRequired>
-    <hostile>false</hostile>
-    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
-    <verbProperties>
-      <verbClass>Verb_CastAbility</verbClass>
-      <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
-      <nonInterruptingSelfCast>true</nonInterruptingSelfCast>
-      <warmupTime>0</warmupTime>
-      <range>-1</range>
-      <drawAimPie>false</drawAimPie>    
-      <requireLineOfSight>False</requireLineOfSight>
-      <targetParams>
-        <canTargetSelf>true</canTargetSelf>
-      </targetParams>
-    </verbProperties>
-    <comps>
-      <li Class="CompProperties_AbilityGiveHediff">
-        <compClass>CompAbilityEffect_GiveHediff</compClass>
-        <hediffDef>IM_AutocastSystemMerge_On</hediffDef>
-      </li>
-      <li Class="CompProperties_AbilityRemoveHediff">
-        <compClass>CompAbilityEffect_RemoveHediff</compClass>
-        <applyToSelf>true</applyToSelf>
-        <hediffDef>IM_AutocastSystemMerge_Off</hediffDef>
-      </li>
-    </comps>
-  </AbilityDef>
 
   <HediffDef>
     <hediffClass>HediffWithComps</hediffClass>
@@ -599,55 +841,11 @@
     <everCurableByItem>false</everCurableByItem>
     <scenarioCanAdd>false</scenarioCanAdd>
     <initialSeverity>1</initialSeverity>
-    <comps>
-      <li Class="HediffCompProperties_GiveAbility">
-        <abilityDef>IM_AutocastSystemMerge_Off</abilityDef>
-      </li>
-    </comps>
     <stages>
       <li>
         <becomeVisible>false</becomeVisible>
       </li>
     </stages>
   </HediffDef>
-
-  <AbilityDef>
-    <defName>IM_AutocastSystemMerge_Off</defName>
-    <label>toggle autocast off</label>
-    <description>Disables system merge's autocast.</description>
-    <iconPath>UI/Abilities/SystemMerge_AutoOff</iconPath>
-    <jobDef>CastAbilityOnThing</jobDef>
-    <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
-    <displayGizmoWhileUndrafted>true</displayGizmoWhileUndrafted>
-    <disableGizmoWhileUndrafted>false</disableGizmoWhileUndrafted>
-    <stunTargetWhileCasting>false</stunTargetWhileCasting>
-    <cooldownTicksRange>60</cooldownTicksRange>
-    <targetRequired>false</targetRequired>
-    <hostile>false</hostile>
-    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
-    <verbProperties>
-      <verbClass>Verb_CastAbility</verbClass>
-      <forceNormalTimeSpeed>false</forceNormalTimeSpeed>
-      <nonInterruptingSelfCast>true</nonInterruptingSelfCast>
-      <warmupTime>0</warmupTime>
-      <range>-1</range>
-      <drawAimPie>false</drawAimPie>    
-      <requireLineOfSight>False</requireLineOfSight>
-      <targetParams>
-        <canTargetSelf>true</canTargetSelf>
-      </targetParams>
-    </verbProperties>
-    <comps>
-      <li Class="CompProperties_AbilityGiveHediff">
-        <compClass>CompAbilityEffect_GiveHediff</compClass>
-        <hediffDef>IM_AutocastSystemMerge_Off</hediffDef>
-      </li>
-      <li Class="CompProperties_AbilityRemoveHediff">
-        <compClass>CompAbilityEffect_RemoveHediff</compClass>
-        <applyToSelf>true</applyToSelf>
-        <hediffDef>IM_AutocastSystemMerge_On</hediffDef>
-      </li>
-    </comps>
-  </AbilityDef>
 
 </Defs>
