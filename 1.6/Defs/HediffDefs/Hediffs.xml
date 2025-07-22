@@ -13,7 +13,8 @@
     <initialSeverity>1</initialSeverity>
     <defaultInstallPart>IM_HoverThorax</defaultInstallPart>
     <keepOnBodyPartRestoration>true</keepOnBodyPartRestoration>
-    <countAsAddedPartOrImplan>true</countAsAddedPartOrImplan>
+    <countsAsAddedPartOrImplant>true</countsAsAddedPartOrImplant>
+    <forceRemoveOnResurrection>false</forceRemoveOnResurrection>
     <comps>
       <li Class="EBSGFramework.HediffCompProperties_TerrainCostOverride">
         <universalCostOverride>0</universalCostOverride>    
@@ -153,7 +154,8 @@
     <maxSeverity>1</maxSeverity>
     <defaultInstallPart>ArtificialBrain</defaultInstallPart>
     <keepOnBodyPartRestoration>true</keepOnBodyPartRestoration>
-    <countAsAddedPartOrImplan>true</countAsAddedPartOrImplan>
+    <countsAsAddedPartOrImplant>true</countsAsAddedPartOrImplant>
+    <forceRemoveOnResurrection>false</forceRemoveOnResurrection>
     <comps>
       <li Class="EBSGFramework.HediffCompProperties_SeverityChangePerAttack">
         <changePerRangedAttack>0.02</changePerRangedAttack>
@@ -244,7 +246,8 @@
     <maxSeverity>1</maxSeverity>
     <defaultInstallPart>ArtificialBrain</defaultInstallPart>
     <keepOnBodyPartRestoration>true</keepOnBodyPartRestoration>
-    <countAsAddedPartOrImplan>true</countAsAddedPartOrImplan>
+    <countsAsAddedPartOrImplant>true</countsAsAddedPartOrImplant>
+    <forceRemoveOnResurrection>false</forceRemoveOnResurrection>
     <comps>
       <li Class="EBSGFramework.HediffCompProperties_SeverityChangeWhenDamaged">
         <severityChangeFactor>0.0125</severityChangeFactor>
