@@ -153,6 +153,7 @@
     <maxSeverity>1</maxSeverity>
     <defaultInstallPart>ArtificialBrain</defaultInstallPart>
     <keepOnBodyPartRestoration>true</keepOnBodyPartRestoration>
+    <countAsAddedPartOrImplan>true</countAsAddedPartOrImplan>
     <comps>
       <li Class="EBSGFramework.HediffCompProperties_SeverityChangePerAttack">
         <changePerRangedAttack>0.02</changePerRangedAttack>
@@ -243,6 +244,7 @@
     <maxSeverity>1</maxSeverity>
     <defaultInstallPart>ArtificialBrain</defaultInstallPart>
     <keepOnBodyPartRestoration>true</keepOnBodyPartRestoration>
+    <countAsAddedPartOrImplan>true</countAsAddedPartOrImplan>
     <comps>
       <li Class="EBSGFramework.HediffCompProperties_SeverityChangeWhenDamaged">
         <severityChangeFactor>0.0125</severityChangeFactor>
