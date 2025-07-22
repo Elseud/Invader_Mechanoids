@@ -58,6 +58,24 @@
 	</Operation>
 
 	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="IM_MechanicalBombardierBeetle"]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="MechanicalHead"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="IM_MechanicalBombardierBeetle"]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="MechanicalHead"]</xpath>
+			<value>
+				<groups>
+					<li>CoveredByNaturalArmor</li>
+				</groups>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="IM_MechanicalBombardierBeetle"]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="MechanicalHead"]/groups</xpath>
+			<value>
+				<li>CoveredByNaturalArmor</li>
+			</value>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
 		<xpath>Defs/BodyDef[defName="IM_MechanicalBombardierBeetle"]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="MechanicalHead"]/parts/li[def="SightSensor"]/groups</xpath>
 		<nomatch Class="PatchOperationAdd">
 			<xpath>Defs/BodyDef[defName="IM_MechanicalBombardierBeetle"]/corePart/parts/li[def="MechanicalNeck"]/parts/li[def="MechanicalHead"]/parts/li[def="SightSensor"]</xpath>
@@ -111,10 +129,10 @@
 		</match>
 	</Operation>
 
-<Operation Class="PatchOperationConditional">
-		<xpath>Defs/BodyDef[defName="IM_MechanicalBombardierBeetle"]/corePart/parts/li[def="MechanicalLeg"]/groups</xpath>
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="IM_MechanicalBombardierBeetle"]/corePart/parts/li[customLabel="front left leg"]/groups</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/BodyDef[defName="IM_MechanicalBombardierBeetle"]/corePart/parts/li[def="MechanicalLeg"]</xpath>
+			<xpath>Defs/BodyDef[defName="IM_MechanicalBombardierBeetle"]/corePart/parts/li[customLabel="front left leg"]</xpath>
 			<value>
 				<groups>
 					<li>CoveredByNaturalArmor</li>
@@ -122,7 +140,7 @@
 			</value>
 		</nomatch>
 		<match Class="PatchOperationAdd">
-			<xpath>Defs/BodyDef[defName="IM_MechanicalBombardierBeetle"]/corePart/parts/li[def="MechanicalLeg"]/groups</xpath>
+			<xpath>Defs/BodyDef[defName="IM_MechanicalBombardierBeetle"]/corePart/parts/li[customLabel="front left leg"]/groups</xpath>
 			<value>
 				<li>CoveredByNaturalArmor</li>
 			</value>
@@ -130,9 +148,9 @@
 	</Operation>
 
 	<Operation Class="PatchOperationConditional">
-		<xpath>Defs/BodyDef[defName="IM_MechanicalBombardierBeetle"]/corePart/parts/li[def="MechanicalLeg"]/parts/li[def="MechanicalFoot"]/groups</xpath>
+		<xpath>Defs/BodyDef[defName="IM_MechanicalBombardierBeetle"]/corePart/parts/li[customLabel="front left leg"]/parts/li[def="MechanicalFoot"]/groups</xpath>
 		<nomatch Class="PatchOperationAdd">
-			<xpath>Defs/BodyDef[defName="IM_MechanicalBombardierBeetle"]/corePart/parts/li[def="MechanicalLeg"]/parts/li[def="MechanicalFoot"]</xpath>
+			<xpath>Defs/BodyDef[defName="IM_MechanicalBombardierBeetle"]/corePart/parts/li[customLabel="front left leg"]/parts/li[def="MechanicalFoot"]</xpath>
 			<value>
 				<groups>
 					<li>CoveredByNaturalArmor</li>
@@ -140,7 +158,115 @@
 			</value>
 		</nomatch>
 		<match Class="PatchOperationAdd">
-			<xpath>Defs/BodyDef[defName="IM_MechanicalBombardierBeetle"]/corePart/parts/li[def="MechanicalLeg"]/parts/li[def="MechanicalFoot"]/groups</xpath>
+			<xpath>Defs/BodyDef[defName="IM_MechanicalBombardierBeetle"]/corePart/parts/li[customLabel="front left leg"]/parts/li[def="MechanicalFoot"]/groups</xpath>
+			<value>
+				<li>CoveredByNaturalArmor</li>
+			</value>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="IM_MechanicalBombardierBeetle"]/corePart/parts/li[customLabel="front right leg"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="IM_MechanicalBombardierBeetle"]/corePart/parts/li[customLabel="front right leg"]</xpath>
+			<value>
+				<groups>
+					<li>CoveredByNaturalArmor</li>
+				</groups>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="IM_MechanicalBombardierBeetle"]/corePart/parts/li[customLabel="front right leg"]/groups</xpath>
+			<value>
+				<li>CoveredByNaturalArmor</li>
+			</value>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="IM_MechanicalBombardierBeetle"]/corePart/parts/li[customLabel="front right leg"]/parts/li[def="MechanicalFoot"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="IM_MechanicalBombardierBeetle"]/corePart/parts/li[customLabel="front right leg"]/parts/li[def="MechanicalFoot"]</xpath>
+			<value>
+				<groups>
+					<li>CoveredByNaturalArmor</li>
+				</groups>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="IM_MechanicalBombardierBeetle"]/corePart/parts/li[customLabel="front right leg"]/parts/li[def="MechanicalFoot"]/groups</xpath>
+			<value>
+				<li>CoveredByNaturalArmor</li>
+			</value>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="IM_MechanicalBombardierBeetle"]/corePart/parts/li[customLabel="rear left leg"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="IM_MechanicalBombardierBeetle"]/corePart/parts/li[customLabel="rear left leg"]</xpath>
+			<value>
+				<groups>
+					<li>CoveredByNaturalArmor</li>
+				</groups>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="IM_MechanicalBombardierBeetle"]/corePart/parts/li[customLabel="rear left leg"]/groups</xpath>
+			<value>
+				<li>CoveredByNaturalArmor</li>
+			</value>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="IM_MechanicalBombardierBeetle"]/corePart/parts/li[customLabel="rear left leg"]/parts/li[def="MechanicalFoot"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="IM_MechanicalBombardierBeetle"]/corePart/parts/li[customLabel="rear left leg"]/parts/li[def="MechanicalFoot"]</xpath>
+			<value>
+				<groups>
+					<li>CoveredByNaturalArmor</li>
+				</groups>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="IM_MechanicalBombardierBeetle"]/corePart/parts/li[customLabel="rear left leg"]/parts/li[def="MechanicalFoot"]/groups</xpath>
+			<value>
+				<li>CoveredByNaturalArmor</li>
+			</value>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="IM_MechanicalBombardierBeetle"]/corePart/parts/li[customLabel="rear right leg"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="IM_MechanicalBombardierBeetle"]/corePart/parts/li[customLabel="rear right leg"]</xpath>
+			<value>
+				<groups>
+					<li>CoveredByNaturalArmor</li>
+				</groups>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="IM_MechanicalBombardierBeetle"]/corePart/parts/li[customLabel="rear right leg"]/groups</xpath>
+			<value>
+				<li>CoveredByNaturalArmor</li>
+			</value>
+		</match>
+	</Operation>
+
+	<Operation Class="PatchOperationConditional">
+		<xpath>Defs/BodyDef[defName="IM_MechanicalBombardierBeetle"]/corePart/parts/li[customLabel="rear right leg"]/parts/li[def="MechanicalFoot"]/groups</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="IM_MechanicalBombardierBeetle"]/corePart/parts/li[customLabel="rear right leg"]/parts/li[def="MechanicalFoot"]</xpath>
+			<value>
+				<groups>
+					<li>CoveredByNaturalArmor</li>
+				</groups>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationAdd">
+			<xpath>Defs/BodyDef[defName="IM_MechanicalBombardierBeetle"]/corePart/parts/li[customLabel="rear right leg"]/parts/li[def="MechanicalFoot"]/groups</xpath>
 			<value>
 				<li>CoveredByNaturalArmor</li>
 			</value>

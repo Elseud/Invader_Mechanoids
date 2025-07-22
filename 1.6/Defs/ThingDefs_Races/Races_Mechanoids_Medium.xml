@@ -147,6 +147,9 @@
         <def>IW_Hoverjet</def>
       </li>
     </startingHediffs>
+    <modExtensions>
+      <li Class="EBSGFramework.ForceStartingHediffsExtension" />
+    </modExtensions>
   </PawnKindDef>
 
   <!-- Ripper -->

@@ -384,6 +384,7 @@
             <li>Corpse_IM_Mech_Skirmisher</li>
             <li>Corpse_IM_Mech_Ripper</li>
             <li>Corpse_IM_Mech_Infiltrator</li>
+            <li>Corpse_IM_Mech_Constrictor</li>
           </value>
         </li>
 
@@ -415,6 +416,7 @@
             <li>IM_Skirmisher</li>
             <li>IM_Ripper</li>
             <li>IM_Infiltrator</li>
+            <li>IM_Constrictor</li>
             <li>IM_Templar</li>
             <li>IM_Berserker</li>
             <li>IM_Bombardier</li>
@@ -596,6 +598,54 @@
               </products>
               <descriptionHyperlinks>
                 <ThingDef>IM_Mech_Infiltrator</ThingDef>
+              </descriptionHyperlinks>
+            </RecipeDef>
+
+            <!-- Constrictor -->
+            <RecipeDef ParentName="MediumMechanoidRecipe">
+              <defName>IM_Constrictor</defName>
+              <label>gestate constrictor</label>
+              <description>Gestate an constrictor mechanoid.</description>
+              <researchPrerequisite>HighMechtech</researchPrerequisite>
+              <ingredients Inherit="False">
+                <li>
+                  <filter>
+                    <thingDefs>
+                      <li>Steel</li>
+                    </thingDefs>
+                  </filter>
+                  <count>140</count>
+                </li>
+                <li>
+                  <filter>
+                    <thingDefs>
+                      <li>Plasteel</li>
+                    </thingDefs>
+                  </filter>
+                  <count>70</count>
+                </li>
+                <li>
+                  <filter>
+                    <thingDefs>
+                      <li>ComponentIndustrial</li>
+                    </thingDefs>
+                  </filter>
+                 <count>4</count>
+                </li>
+                <li>
+                  <filter>
+                    <thingDefs>
+                      <li>SubcoreHigh</li>
+                    </thingDefs>
+                  </filter>
+                 <count>1</count>
+                </li>
+              </ingredients>
+              <products>
+                <IM_Mech_Constrictor>1</IM_Mech_Constrictor>
+              </products>
+              <descriptionHyperlinks>
+                <ThingDef>IM_Mech_Constrictor</ThingDef>
               </descriptionHyperlinks>
             </RecipeDef>
 

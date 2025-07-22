@@ -293,7 +293,7 @@
         <canTargetAnimals>false</canTargetAnimals>
         <canTargetHumans>false</canTargetHumans>
         <canTargetMechs>true</canTargetMechs>
-        <canTargetSubhumans>false</canTargetSubhumans>
+        <canTargetMutants>false</canTargetMutants>
         <neverTargetIncapacitated>true</neverTargetIncapacitated>
       </targetParams>
     </verbProperties>
@@ -605,7 +605,7 @@
         <canTargetAnimals>true</canTargetAnimals>
         <canTargetHumans>true</canTargetHumans>
         <canTargetMechs>true</canTargetMechs>
-        <canTargetSubhumans>true</canTargetSubhumans>
+        <canTargetMutants>true</canTargetMutants>
         <neverTargetIncapacitated>false</neverTargetIncapacitated>
       </targetParams>
     </verbProperties>
@@ -730,7 +730,7 @@
         <canTargetAnimals>true</canTargetAnimals>
         <canTargetHumans>true</canTargetHumans>
         <canTargetMechs>true</canTargetMechs>
-        <canTargetSubhumans>true</canTargetSubhumans>
+        <canTargetMutants>true</canTargetMutants>
       </targetParams>
     </verbProperties>
     <comps>
